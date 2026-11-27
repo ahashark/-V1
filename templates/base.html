@@ -7,7 +7,7 @@
   <link rel="canonical" href="{{ site_url }}{{ request.path }}">
   <meta property="og:site_name" content="{{ brand_name }} {{ brand_origin }}">
   <meta property="og:url" content="{{ site_url }}{{ request.path }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=20261127b">
 </head>
 <body>
 
@@ -331,6 +331,6 @@
   <script>
     window.SITE_ANNOUNCEMENTS = {{ announcements | tojson }};
   </script>
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}?v=20261127b"></script>
 </body>
 </html>

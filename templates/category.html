@@ -68,9 +68,9 @@
       {% endfor %}
     </div>
     {% else %}
-    <div style="text-align:center; padding:64px 20px;">
-      <h3 class="serif-title" style="font-size:1.55rem; margin-bottom:10px;">该香调下暂无收录作品</h3>
-      <p style="color:var(--text-muted); margin-bottom:24px;">您可以重置香调筛选条件，或返回全系图鉴浏览更多灵感。</p>
+    <div class="empty-catalog-state">
+      <h3 class="serif-title">该香调下暂无收录作品</h3>
+      <p>您可以重置香调筛选条件，或返回全系图鉴浏览更多灵感。</p>
       <a href="{{ base_url }}" class="btn btn-primary">显示全部作品</a>
     </div>
     {% endif %}

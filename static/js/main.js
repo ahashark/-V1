@@ -225,13 +225,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const sort = (params.get("sort") || "featured").trim();
       const q = (params.get("q") || "").trim();
 
-      // 同步按钮与下拉选中状态，并在移动端横向筛选栏中自动将选中项居中
+      // 同步按钮与下拉选中状态
       toolbar.querySelectorAll(".filter-pill").forEach((pill) => {
-        const isActive = (pill.dataset.scent || "") === scent;
-        pill.classList.toggle("active", isActive);
-        if (isActive && scent) {
-          pill.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        }
+        pill.classList.toggle("active", (pill.dataset.scent || "") === scent);
       });
       if (sortSelect) sortSelect.value = sort;
 
@@ -268,9 +264,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (filtered.length === 0) {
         gridWrap.innerHTML = `
-          <div style="text-align:center; padding:64px 20px;">
-            <h3 class="serif-title" style="font-size:1.55rem; margin-bottom:10px;">该筛选条件下暂无收录作品</h3>
-            <p style="color:var(--text-muted); margin-bottom:24px;">您可以重置筛选条件，或返回全系图鉴浏览更多灵感。</p>
+          <div class="empty-catalog-state">
+            <h3 class="serif-title">该筛选条件下暂无收录作品</h3>
+            <p>您可以重置筛选条件，或返回全系图鉴浏览更多灵感。</p>
             <a href="${baseUrl}" class="btn btn-primary">显示全部作品</a>
           </div>
         `;
