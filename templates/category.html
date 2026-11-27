@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.name_zh }} ({{ category.name_en }}) | {{ brand_name }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">{{ category.eyebrow }}</span>
+    <h1 class="serif-title">{{ category.name_en }} · {{ category.name_zh }}</h1>
+    <p>{{ category.description }}</p>
+    <p id="searchKeywordHint" style="margin-top:12px; color:var(--brand-black); {% if not search_query %}display:none;{% endif %}">
+      当前检索关键词：「<strong id="searchKeywordText">{{ search_query }}</strong>」（共 <span id="searchCountText">{{ products|length }}</span> 件作品）
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:32px;">
+  <div class="container">
+    <!-- 香调筛选与排序展示工具栏 -->
+    <div class="filter-toolbar" id="catalogToolbar" data-category-slug="{{ category.slug }}" data-base-url="{{ url_for('pages.shop_all') if is_shop_all else url_for('pages.category_detail', slug=category.slug) }}">
+      <div class="filter-pills">
+        {% set base_url = url_for('pages.shop_all') if is_shop_all else url_for('pages.category_detail', slug=category.slug) %}
+        <a href="{{ base_url }}" data-scent="" class="filter-pill {% if not current_scent %}active{% endif %}">全部香调 · All</a>
+        {% for sf in scent_families %}
+        <a
+          href="{{ base_url }}?scent={{ sf.key }}"
+          data-scent="{{ sf.key }}"
+          class="filter-pill {% if current_scent == sf.key %}active{% endif %}"
+        >
+          {{ sf.label }}
+        </a>
+        {% endfor %}
+      </div>
+
+      <form method="get" action="{{ base_url }}" id="catalogSortForm" style="display:flex; align-items:center; gap:8px;">
+        <label for="sortSelect" style="font-size:0.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">排列方式：</label>
+        <select id="sortSelect" name="sort" class="luxury-select" style="width:auto; padding:8px 14px; font-size:0.82rem;">
+          <option value="featured" {% if current_sort == 'featured' %}selected{% endif %}>代表作优先 · Featured</option>
+          <option value="name_asc" {% if current_sort == 'name_asc' %}selected{% endif %}>名称字母序 · A–Z</option>
+          <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>最新收录 · Newest</option>
+        </select>
+      </form>
+    </div>
+
+    <div id="catalogGridWrap">
+    {% if products %}
+    <div class="product-grid" id="catalogGrid">
+      {% for product in products %}
+      <article class="product-card">
+        <a href="{{ url_for('pages.product_detail', slug=product.slug) }}" class="product-media">
+          {% if product.badge %}
+          <span class="product-badge">{{ product.badge }}</span>
+          {% endif %}
+          <img src="{{ product.image_url }}" alt="{{ product.name_zh }}">
+        </a>
+        <div class="product-body">
+          <div class="product-scent">{{ product.scent_family_zh }} · {{ product.collection }}</div>
+          <a href="{{ url_for('pages.product_detail', slug=product.slug) }}" class="product-name-en">{{ product.name_en }}</a>
+          <div class="product-name-zh">{{ product.name_zh }}</div>
+          <div class="product-meta">
+            <span>规格：{{ product.variants | map(attribute='size') | join(' / ') }}</span>
+          </div>
+          <a href="{{ url_for('pages.product_detail', slug=product.slug) }}" class="btn btn-outline btn-block">
+            探索作品详情 · Discover
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align:center; padding:64px 20px;">
+      <h3 class="serif-title" style="font-size:1.55rem; margin-bottom:10px;">该香调下暂无收录作品</h3>
+      <p style="color:var(--text-muted); margin-bottom:24px;">您可以重置香调筛选条件，或返回全系图鉴浏览更多灵感。</p>
+      <a href="{{ base_url }}" class="btn btn-primary">显示全部作品</a>
+    </div>
+    {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

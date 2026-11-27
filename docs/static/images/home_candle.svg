@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <radialGradient id="studioBg" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#FFFEFA"/>
+      <stop offset="65%" stop-color="#FCF9EE"/>
+      <stop offset="100%" stop-color="#EFEAD8"/>
+    </radialGradient>
+    <linearGradient id="silverLid" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9E9E9E"/>
+      <stop offset="18%" stop-color="#F5F5F5"/>
+      <stop offset="36%" stop-color="#BDBDBD"/>
+      <stop offset="55%" stop-color="#FFFFFF"/>
+      <stop offset="78%" stop-color="#8C8C8C"/>
+      <stop offset="92%" stop-color="#E0E0E0"/>
+      <stop offset="100%" stop-color="#757575"/>
+    </linearGradient>
+    <linearGradient id="glassBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E6E1D3" stop-opacity="0.85"/>
+      <stop offset="12%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="50%" stop-color="#FAF6E8" stop-opacity="0.92"/>
+      <stop offset="86%" stop-color="#EFEAD9" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#D5CEBE" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="waxFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF7"/>
+      <stop offset="60%" stop-color="#F7F2E2"/>
+      <stop offset="100%" stop-color="#EAE3CE"/>
+    </linearGradient>
+    <radialGradient id="floorShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#292929" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#292929" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#292929" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Studio Cream Canvas -->
+  <rect width="800" height="800" fill="url(#studioBg)"/>
+  <!-- Subtle Studio Horizon Plinth -->
+  <rect x="0" y="590" width="800" height="210" fill="#F5F1E3" opacity="0.65"/>
+  <line x1="0" y1="590" x2="800" y2="590" stroke="#E5DEC9" stroke-width="1"/>
+
+  <!-- Soft Ambient Floor Shadow -->
+  <ellipse cx="425" cy="612" rx="185" ry="26" fill="url(#floorShadow)"/>
+
+  <!-- Heavy Glass Tumbler Outer -->
+  <rect x="275" y="255" width="250" height="348" rx="12" fill="url(#glassBody)" stroke="#D8D2C1" stroke-width="1.5"/>
+
+  <!-- Ivory Scented Wax Core -->
+  <rect x="291" y="286" width="218" height="288" rx="4" fill="url(#waxFill)"/>
+
+  <!-- Thick Crystal Glass Base -->
+  <rect x="279" y="574" width="242" height="26" rx="8" fill="#E8E4D8" opacity="0.8"/>
+  <line x1="286" y1="575" x2="514" y2="575" stroke="#FFFFFF" stroke-width="2" opacity="0.85"/>
+
+  <!-- Glass Vertical Specular Highlights -->
+  <rect x="288" y="262" width="14" height="330" rx="6" fill="#FFFFFF" opacity="0.65"/>
+  <rect x="502" y="262" width="7" height="330" rx="3" fill="#FFFFFF" opacity="0.4"/>
+
+  <!-- Polished Silver Lid -->
+  <rect x="269" y="232" width="262" height="26" rx="3" fill="url(#silverLid)" stroke="#8E8E8E" stroke-width="0.8"/>
+  <line x1="271" y1="236" x2="529" y2="236" stroke="#FFFFFF" stroke-width="1.5" opacity="0.8"/>
+  <!-- Silver Lid Finial Knob -->
+  <ellipse cx="400" cy="218" rx="22" ry="15" fill="url(#silverLid)" stroke="#8E8E8E" stroke-width="0.8"/>
+  <rect x="390" y="228" width="20" height="6" fill="url(#silverLid)"/>
+
+  <!-- Iconic Cream & Black Framed Label -->
+  <rect x="330" y="346" width="140" height="172" fill="#FCF9EE" stroke="#292929" stroke-width="1.5"/>
+  <rect x="336" y="352" width="128" height="160" fill="none" stroke="#292929" stroke-width="0.7"/>
+
+  <!-- Minimalist Typography Emblem on Label -->
+  <text x="400" y="388" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9.5" letter-spacing="3.2" fill="#292929">MAISON</text>
+  <text x="400" y="403" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10.5" letter-spacing="3.6" fill="#292929">L'ATELIER</text>
+  <text x="400" y="416" text-anchor="middle" font-family="Arial, sans-serif" font-size="6.5" letter-spacing="2.8" fill="#696969">LONDON</text>
+
+  <line x1="378" y1="436" x2="422" y2="436" stroke="#292929" stroke-width="0.7"/>
+
+  <text x="400" y="458" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="8.5" letter-spacing="2" fill="#292929">SCENTED</text>
+  <text x="400" y="472" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="8.5" letter-spacing="2" fill="#292929">HOME CANDLE</text>
+  <text x="400" y="494" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="7" letter-spacing="1.5" fill="#696969">200G · ENGLAND</text>
+</svg>

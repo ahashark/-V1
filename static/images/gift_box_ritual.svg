@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800">
+  <defs>
+    <radialGradient id="linenBg" cx="48%" cy="40%" r="68%">
+      <stop offset="0%" stop-color="#FFFDF8"/>
+      <stop offset="65%" stop-color="#F9F5E8"/>
+      <stop offset="100%" stop-color="#EAE3D0"/>
+    </radialGradient>
+    <linearGradient id="creamBoxFront" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDFBF2"/>
+      <stop offset="100%" stop-color="#F1ECDC"/>
+    </linearGradient>
+    <linearGradient id="blackCap" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#141414"/>
+      <stop offset="28%" stop-color="#3A3A3A"/>
+      <stop offset="52%" stop-color="#1E1E1E"/>
+      <stop offset="85%" stop-color="#2E2E2E"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </linearGradient>
+    <radialGradient id="softShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1C1C1C" stop-opacity="0.24"/>
+      <stop offset="65%" stop-color="#1C1C1C" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#1C1C1C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Studio Surface -->
+  <rect width="800" height="800" fill="url(#linenBg)"/>
+  <rect x="0" y="585" width="800" height="215" fill="#F2EDE0" opacity="0.7"/>
+  <line x1="0" y1="585" x2="800" y2="585" stroke="#E2DAC6" stroke-width="1"/>
+
+  <!-- Floor Shadows -->
+  <ellipse cx="355" cy="605" rx="220" ry="26" fill="url(#softShadow)"/>
+  <ellipse cx="585" cy="622" rx="125" ry="20" fill="url(#softShadow)"/>
+
+  <!-- Signature Cream Rigid Gift Box (Background Left) -->
+  <!-- Box Base -->
+  <rect x="145" y="305" width="350" height="292" fill="url(#creamBoxFront)" stroke="#292929" stroke-width="2"/>
+  <!-- Iconic Black-Trimmed Box Lid -->
+  <rect x="135" y="242" width="370" height="72" fill="#FCF9EE" stroke="#1E1E1E" stroke-width="3.5"/>
+  <line x1="138" y1="308" x2="502" y2="308" stroke="#1E1E1E" stroke-width="2"/>
+
+  <!-- Vertical Matte Black Grosgrain Ribbon -->
+  <rect x="304" y="240" width="32" height="358" fill="#1C1C1C"/>
+  <line x1="309" y1="240" x2="309" y2="598" stroke="#333333" stroke-width="0.8"/>
+  <line x1="331" y1="240" x2="331" y2="598" stroke="#333333" stroke-width="0.8"/>
+
+  <!-- Tailored Black Grosgrain Ribbon Bow on Top of Lid -->
+  <!-- Left & Right Loops -->
+  <path d="M320 240 C268 186, 212 204, 232 236 C246 256, 292 246, 320 240 Z" fill="#1E1E1E" stroke="#111111" stroke-width="1.5"/>
+  <path d="M320 240 C372 186, 428 204, 408 236 C394 256, 348 246, 320 240 Z" fill="#242424" stroke="#111111" stroke-width="1.5"/>
+  <!-- Inner Loop Depth -->
+  <path d="M312 236 C278 206, 244 214, 252 230 C260 240, 292 238, 312 236 Z" fill="#121212"/>
+  <path d="M328 236 C362 206, 396 214, 388 230 C380 240, 348 238, 328 236 Z" fill="#121212"/>
+  <!-- Ribbon Tails Draping Over Lid -->
+  <path d="M314 242 L262 328 L286 334 L320 250 Z" fill="#181818"/>
+  <path d="M326 242 L378 328 L354 334 L320 250 Z" fill="#202020"/>
+  <!-- Center Knot -->
+  <rect x="307" y="226" width="26" height="20" rx="3" fill="#2B2B2B" stroke="#111111" stroke-width="1"/>
+
+  <!-- Luxury Body Crème Jar (Foreground Right) -->
+  <!-- Frosted Glass Jar Base -->
+  <rect x="462" y="452" width="212" height="162" rx="14" fill="#FAF7EC" stroke="#D2CBB8" stroke-width="1.5"/>
+  <rect x="472" y="458" width="16" height="148" rx="6" fill="#FFFFFF" opacity="0.65"/>
+  <rect x="470" y="596" width="196" height="14" rx="5" fill="#E5DFCE"/>
+  <!-- Sleek Glossy Black Jar Lid -->
+  <rect x="458" y="414" width="220" height="42" rx="4" fill="url(#blackCap)"/>
+  <line x1="462" y1="420" x2="674" y2="420" stroke="#555555" stroke-width="1" opacity="0.7"/>
+
+  <!-- Cream & Black Framed Jar Label -->
+  <rect x="506" y="478" width="124" height="104" fill="#FCF9EE" stroke="#292929" stroke-width="1.3"/>
+  <rect x="511" y="483" width="114" height="94" fill="none" stroke="#292929" stroke-width="0.6"/>
+  <text x="568" y="512" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="8.5" letter-spacing="2.8" fill="#292929">MAISON L'ATELIER</text>
+  <text x="568" y="524" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" letter-spacing="2.4" fill="#696969">LONDON</text>
+  <line x1="548" y1="536" x2="588" y2="536" stroke="#292929" stroke-width="0.6"/>
+  <text x="568" y="553" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="8" letter-spacing="1.8" fill="#292929">BODY CRÈME</text>
+  <text x="568" y="567" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="6.5" letter-spacing="1.2" fill="#696969">175ML</text>
+</svg>

@@ -1,0 +1,28 @@
+"""
+全局配置文件 (Global Configuration)
+支持本地 Flask 预览与导出静态站点托管至 GitHub Pages（绑定自定义域名 sxy.ink）。
+"""
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+DATABASE_PATH = BASE_DIR / "instance" / "atelier_fragrance.db"
+STATIC_BUILD_DIR = BASE_DIR / "docs"
+
+
+class Config:
+    DATABASE = str(DATABASE_PATH)
+
+    # GitHub Pages 自定义域名配置
+    CUSTOM_DOMAIN = "sxy.ink"
+    SITE_URL = "https://sxy.ink"
+
+    # 品牌基础设定（参考 jomalone.co.uk 英伦奢华香氛视觉定位）
+    BRAND_NAME = "MAISON L'ATELIER"
+    BRAND_ORIGIN = "LONDON"
+
+    # 顶部轮播品牌导览文案（纯展示）
+    ANNOUNCEMENTS = [
+        "英伦高定香氛典藏：甄选纯粹自然原料，诠释当代极简调香美学 | British Bespoke Perfumery",
+        "探索 Scent Pairing™ 香氛叠穿艺术，自由混搭缔造独一无二的私人香印 | The Art of Scent Pairing",
+        "标志性暖奶油色礼盒与黑色罗纹丝带，致敬源自伦敦的优雅礼赠传统 | Iconic British Craftsmanship",
+    ]

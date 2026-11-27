@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}页面未找到 | {{ brand_name }}{% endblock %}
+
+{% block content %}
+<section class="section" style="text-align:center; padding:110px 0;">
+  <div class="container">
+    <span class="eyebrow">404 · PAGE NOT FOUND</span>
+    <h1 class="serif-title" style="font-size:2.4rem; margin-bottom:14px;">您寻访的香氛篇章暂未开启</h1>
+    <p style="color:var(--text-muted); max-width:480px; margin:0 auto 28px;">该链接可能已变更，诚邀您返回首页或浏览全部经典古龙水与居室香氛系列。</p>
+    <a href="{{ url_for('pages.index') }}" class="btn btn-primary">返回精品店首页</a>
+  </div>
+</section>
+{% endblock %}
