@@ -113,7 +113,7 @@
     </div>
     <div>
       <span class="eyebrow" style="color:#b8b2a2;">RARE & PRECIOUS INGREDIENTS</span>
-      <h2 class="serif-title" style="font-size:2.35rem; margin-bottom:14px;">芳醇黑瓶古龙水系列<br>Cologne Intense</h2>
+      <h2 class="serif-title intense-title">芳醇黑瓶古龙水系列<br>Cologne Intense</h2>
       <p style="color:#d5d0c3; font-size:0.95rem; max-width:540px;">
         遍寻世界各地珍稀树脂、古老木质与馥郁香料，盛装于深邃烟熏黑晶玻璃瓶身之中，呈现层次浓郁、留香悠长的感官盛宴。
       </p>
@@ -123,12 +123,12 @@
         <div class="intense-mini-card">
           <h4>{{ item.name_en }}</h4>
           <p>{{ item.name_zh }} · {{ item.scent_family_zh }}</p>
-          <a href="{{ url_for('pages.product_detail', slug=item.slug) }}" class="btn btn-light" style="padding:9px 18px; font-size:0.72rem;">品鉴详情</a>
+          <a href="{{ url_for('pages.product_detail', slug=item.slug) }}" class="btn btn-light btn-sm">品鉴详情</a>
         </div>
         {% endfor %}
       </div>
 
-      <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="btn btn-light">浏览全系古龙水作品</a>
+      <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="btn btn-light intense-cta">浏览全系古龙水作品</a>
     </div>
   </div>
 </section>
@@ -167,7 +167,7 @@
 
         <div class="pairing-result visible" id="pairingResultPanel">
           <span class="eyebrow">BESPOKE LAYERING HARMONY</span>
-          <h3 class="serif-title" id="pairingTitle" style="font-size:1.55rem; margin-bottom:8px;">木质调 × 果香调 专属定制香印</h3>
+          <h3 class="serif-title pairing-harmony-title" id="pairingTitle">木质调 × 果香调 专属定制香印</h3>
           <p id="pairingDesc" style="color:var(--text-muted); font-size:0.92rem;">
             先以「鼠尾草与海盐古龙水」的鼠尾草铺垫温润海岸木质底色，再叠穿「英国梨与小苍兰古龙水」的威廉梨与白色小苍兰，交织出清冽而又甜美灵动的英伦层次。
           </p>
@@ -185,7 +185,7 @@
               <div id="pairBaseNote" class="serif-title" style="font-size:1.05rem;">鼠尾草 · 广藿香与琥珀</div>
             </div>
           </div>
-          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <div class="action-group">
             <a href="{{ url_for('pages.product_detail', slug='wood-sage-and-sea-salt-cologne') }}" id="baseProductLink" class="btn btn-outline">品鉴基底香氛</a>
             <a href="{{ url_for('pages.product_detail', slug='english-pear-and-freesia-cologne') }}" id="layerProductLink" class="btn btn-outline">品鉴叠穿香氛</a>
           </div>
@@ -203,11 +203,11 @@
     </div>
     <div>
       <span class="eyebrow">THE ICONIC GIFT BOX</span>
-      <h2 class="serif-title" style="font-size:2.2rem; margin-bottom:14px;">系上黑丝带的英伦美学</h2>
+      <h2 class="serif-title split-title">系上黑丝带的英伦美学</h2>
       <p style="color:var(--text-muted); margin-bottom:24px;">
         源自伦敦的经典包装视觉语言：温润质感的暖奶油色硬质方盒镶嵌利落黑边，内衬轻盈黑色雪梨纸，并由工匠手工挽就挺括罗纹蝴蝶结，将极简克制与仪式感融为一体。
       </p>
-      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+      <div class="action-group">
         <a href="{{ url_for('pages.category_detail', slug='gifts') }}" class="btn btn-primary">浏览礼盒系列图鉴</a>
         <a href="{{ url_for('pages.services_page') }}" class="btn btn-outline">探索品牌包装与工艺</a>
       </div>

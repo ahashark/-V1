@@ -42,18 +42,65 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => updateAnnouncement(1), 6000);
   }
 
-  // 2. 顶部实时搜索图鉴浮层控制（纯静态前端检索）
+  // 2. 移动端侧滑导航抽屉与顶部实时搜索图鉴浮层控制（统一遮罩与滚动锁定）
   const backdrop = document.getElementById("globalBackdrop");
   const searchDrawer = document.getElementById("searchDrawer");
+  const mobileNavDrawer = document.getElementById("mobileNavDrawer");
+  const openMobileMenuBtn = document.getElementById("openMobileMenuBtn");
+  const colognesAccordionBtn = document.getElementById("colognesAccordionBtn");
+  const colognesSubmenu = document.getElementById("colognesSubmenu");
 
-  const closeSearchOverlay = () => {
+  const closeAllOverlays = () => {
     backdrop?.classList.remove("open");
     searchDrawer?.classList.remove("open");
+    mobileNavDrawer?.classList.remove("open");
+    mobileNavDrawer?.setAttribute("aria-hidden", "true");
+    openMobileMenuBtn?.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("overlay-open");
   };
 
-  backdrop?.addEventListener("click", closeSearchOverlay);
+  const openMobileMenu = () => {
+    searchDrawer?.classList.remove("open");
+    backdrop?.classList.add("open");
+    mobileNavDrawer?.classList.add("open");
+    mobileNavDrawer?.setAttribute("aria-hidden", "false");
+    openMobileMenuBtn?.setAttribute("aria-expanded", "true");
+    document.body.classList.add("overlay-open");
+  };
+
+  backdrop?.addEventListener("click", closeAllOverlays);
   document.querySelectorAll("[data-close-overlay]").forEach((btn) => {
-    btn.addEventListener("click", closeSearchOverlay);
+    btn.addEventListener("click", closeAllOverlays);
+  });
+
+  openMobileMenuBtn?.addEventListener("click", () => {
+    if (mobileNavDrawer?.classList.contains("open")) {
+      closeAllOverlays();
+    } else {
+      openMobileMenu();
+    }
+  });
+
+  colognesAccordionBtn?.addEventListener("click", () => {
+    if (!colognesSubmenu) return;
+    const isOpen = colognesSubmenu.classList.toggle("open");
+    colognesAccordionBtn.setAttribute("aria-expanded", String(isOpen));
+    const icon = colognesAccordionBtn.querySelector(".accordion-icon");
+    if (icon) icon.textContent = isOpen ? "−" : "+";
+  });
+
+  mobileNavDrawer?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeAllOverlays);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAllOverlays();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 960 && mobileNavDrawer?.classList.contains("open")) {
+      closeAllOverlays();
+    }
   });
 
   const matchProductQuery = (p, q) => {
@@ -94,10 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="product-media" style="aspect-ratio:1/0.85;">
           <img src="${p.image_url}" alt="${p.name_zh}">
         </div>
-        <div style="padding:14px;">
+        <div class="search-card-body">
           <div class="product-scent">${p.scent_family_zh}</div>
-          <div class="serif-title" style="font-size:1rem;">${p.name_en}</div>
-          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">${p.name_zh} · ${p.default_size}</div>
+          <div class="serif-title search-card-title">${p.name_en}</div>
+          <div class="search-card-meta">${p.name_zh} · ${p.default_size}</div>
         </div>
       </a>
     `
@@ -105,12 +152,20 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("");
   };
 
-  document.getElementById("openSearchBtn")?.addEventListener("click", () => {
+  const openSearchOverlay = () => {
+    mobileNavDrawer?.classList.remove("open");
+    mobileNavDrawer?.setAttribute("aria-hidden", "true");
+    openMobileMenuBtn?.setAttribute("aria-expanded", "false");
     backdrop?.classList.add("open");
     searchDrawer?.classList.add("open");
+    document.body.classList.add("overlay-open");
     const input = document.getElementById("liveSearchInput");
     input?.focus();
     triggerLiveSearch(input?.value || "");
+  };
+
+  ["openSearchBtn", "openMobileSearchBtn", "mobileDrawerSearchBtn"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("click", openSearchOverlay);
   });
 
   let searchDebounce = null;
@@ -170,9 +225,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const sort = (params.get("sort") || "featured").trim();
       const q = (params.get("q") || "").trim();
 
-      // 同步按钮与下拉选中状态
+      // 同步按钮与下拉选中状态，并在移动端横向筛选栏中自动将选中项居中
       toolbar.querySelectorAll(".filter-pill").forEach((pill) => {
-        pill.classList.toggle("active", (pill.dataset.scent || "") === scent);
+        const isActive = (pill.dataset.scent || "") === scent;
+        pill.classList.toggle("active", isActive);
+        if (isActive && scent) {
+          pill.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
       });
       if (sortSelect) sortSelect.value = sort;
 

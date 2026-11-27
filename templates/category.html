@@ -14,11 +14,11 @@
   </div>
 </section>
 
-<section class="section" style="padding-top:32px;">
+<section class="section catalog-section">
   <div class="container">
     <!-- 香调筛选与排序展示工具栏 -->
     <div class="filter-toolbar" id="catalogToolbar" data-category-slug="{{ category.slug }}" data-base-url="{{ url_for('pages.shop_all') if is_shop_all else url_for('pages.category_detail', slug=category.slug) }}">
-      <div class="filter-pills">
+      <div class="filter-pills" role="navigation" aria-label="按香调筛选">
         {% set base_url = url_for('pages.shop_all') if is_shop_all else url_for('pages.category_detail', slug=category.slug) %}
         <a href="{{ base_url }}" data-scent="" class="filter-pill {% if not current_scent %}active{% endif %}">全部香调 · All</a>
         {% for sf in scent_families %}
@@ -32,9 +32,9 @@
         {% endfor %}
       </div>
 
-      <form method="get" action="{{ base_url }}" id="catalogSortForm" style="display:flex; align-items:center; gap:8px;">
-        <label for="sortSelect" style="font-size:0.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em;">排列方式：</label>
-        <select id="sortSelect" name="sort" class="luxury-select" style="width:auto; padding:8px 14px; font-size:0.82rem;">
+      <form method="get" action="{{ base_url }}" id="catalogSortForm" class="sort-form">
+        <label for="sortSelect" class="sort-label">排列方式：</label>
+        <select id="sortSelect" name="sort" class="luxury-select sort-select">
           <option value="featured" {% if current_sort == 'featured' %}selected{% endif %}>代表作优先 · Featured</option>
           <option value="name_asc" {% if current_sort == 'name_asc' %}selected{% endif %}>名称字母序 · A–Z</option>
           <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>最新收录 · Newest</option>

@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>黑石榴奢华润肤乳霜 (Pomegranate Noir Body Crème) | MAISON L&#39;ATELIER</title>
   <link rel="canonical" href="https://sxy.ink/product/pomegranate-noir-body-creme/">
   <meta property="og:site_name" content="MAISON L&#39;ATELIER LONDON">
@@ -24,8 +24,23 @@
   <header class="site-header">
     <div class="container">
       <div class="header-top">
+        <button
+          class="mobile-icon-btn mobile-menu-trigger"
+          id="openMobileMenuBtn"
+          type="button"
+          aria-label="打开导航菜单"
+          aria-expanded="false"
+          aria-controls="mobileNavDrawer"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="3" y1="6.5" x2="21" y2="6.5"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="17.5" x2="21" y2="17.5"></line>
+          </svg>
+        </button>
+
         <div class="header-utils-left">
-          <button class="util-trigger" id="openSearchBtn">
+          <button class="util-trigger" id="openSearchBtn" type="button">
             <span>⌕</span>
             <span>寻香检索 · Search</span>
           </button>
@@ -47,6 +62,18 @@
             <span>英伦沙龙 · Salons</span>
           </a>
         </div>
+
+        <button
+          class="mobile-icon-btn mobile-search-trigger"
+          id="openMobileSearchBtn"
+          type="button"
+          aria-label="检索香氛作品"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="20" y1="20" x2="16.2" y2="16.2"></line>
+          </svg>
+        </button>
       </div>
 
       <nav class="primary-nav" aria-label="主导航">
@@ -169,7 +196,7 @@
         </p>
       </div>
 
-      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:24px;">
+      <div class="action-group pdp-actions">
         
         <a href="/category/bath-body/" class="btn btn-outline">返回沐浴与身体奢护</a>
         
@@ -199,13 +226,13 @@
 
   <!-- 官方混搭叠穿推荐 -->
   
-  <section class="section" style="padding-top:16px; padding-bottom:48px;">
+  <section class="section pdp-pairing-section">
     <div class="framed-plaque">
       <div class="framed-plaque-inner pairing-banner-inner">
-        <img src="/static/images/cologne_classic.jpg" alt="鼠尾草与海盐古龙水" style="width:140px; height:140px; object-fit:cover; border:1px solid var(--border-subtle);">
+        <img src="/static/images/cologne_classic.jpg" alt="鼠尾草与海盐古龙水" class="pairing-banner-img">
         <div>
           <span class="eyebrow">PERFECT SCENT PAIRING · 混搭叠穿灵感</span>
-          <h3 class="serif-title" style="font-size:1.45rem; margin-bottom:6px;">推荐叠穿「鼠尾草与海盐古龙水」(Wood Sage &amp; Sea Salt Cologne)</h3>
+          <h3 class="serif-title pairing-banner-title">推荐叠穿「鼠尾草与海盐古龙水」(Wood Sage &amp; Sea Salt Cologne)</h3>
           <p style="font-size:0.9rem; color:var(--text-muted);">沐浴后涂抹黑石榴润肤霜，再于脉搏处喷洒「鼠尾草与海盐」，冷暖交织极具辨识度。</p>
         </div>
         <a href="/product/wood-sage-and-sea-salt-cologne/" class="btn btn-outline">品鉴搭档香氛</a>
@@ -216,12 +243,12 @@
 
   <!-- 同系列关联展示 -->
   
-  <section class="section" style="padding-top:12px;">
+  <section class="section pdp-related-section">
     <div class="section-header">
       <span class="eyebrow">RELATED ARCHIVE</span>
       <h2 class="serif-title">同系列作品图鉴</h2>
     </div>
-    <div class="product-grid" style="grid-template-columns:repeat(3, 1fr);">
+    <div class="product-grid product-grid--related">
       
       <article class="product-card">
         <a href="/product/wood-sage-body-and-hand-wash/" class="product-media">
@@ -294,14 +321,124 @@
   <!-- 全局遮罩层 -->
   <div class="backdrop" id="globalBackdrop"></div>
 
+  <!-- 移动端侧滑奢华导航抽屉 (Mobile Luxury Navigation Drawer) -->
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="移动端主导航" aria-hidden="true">
+    <div class="mobile-drawer-header">
+      <div>
+        <span class="mobile-drawer-brand">MAISON L&#39;ATELIER</span>
+        <span class="mobile-drawer-sub">LONDON</span>
+      </div>
+      <button class="drawer-close" type="button" data-close-overlay aria-label="关闭菜单">×</button>
+    </div>
+
+    <div class="mobile-drawer-search">
+      <button type="button" class="mobile-search-bar-btn" id="mobileDrawerSearchBtn">
+        <span>⌕</span>
+        <span>检索香氛作品或香调原料…</span>
+      </button>
+    </div>
+
+    <nav class="mobile-drawer-body" aria-label="移动版分类导航">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item">
+          <a href="/shop/" class="mobile-nav-link">
+            <span>全部典藏 · All Creations</span>
+            <span class="mobile-nav-arrow">›</span>
+          </a>
+        </li>
+
+        <li class="mobile-nav-item has-accordion">
+          <div class="mobile-nav-row">
+            <a href="/category/colognes/" class="mobile-nav-link">
+              <span>古龙水 · Colognes</span>
+            </a>
+            <button
+              type="button"
+              class="mobile-accordion-btn"
+              id="colognesAccordionBtn"
+              aria-expanded="false"
+              aria-controls="colognesSubmenu"
+              aria-label="展开古龙水子分类"
+            >
+              <span class="accordion-icon">+</span>
+            </button>
+          </div>
+          <div class="mobile-submenu" id="colognesSubmenu">
+            <div class="mobile-submenu-group">
+              <span class="eyebrow">按香调品鉴 · SCENT FAMILIES</span>
+              <ul>
+                <li><a href="/category/colognes/?scent=Fruity">果香调 · Fruity</a></li>
+                <li><a href="/category/colognes/?scent=Woody">木质调 · Woody</a></li>
+                <li><a href="/category/colognes/?scent=Citrus">柑橘调 · Citrus</a></li>
+                <li><a href="/category/colognes/?scent=Amber">琥珀东方调 · Amber</a></li>
+              </ul>
+            </div>
+            <div class="mobile-submenu-group">
+              <span class="eyebrow">馆藏系列 · COLLECTIONS</span>
+              <ul>
+                <li><a href="/category/colognes/">经典白标古龙水 · Classic</a></li>
+                <li><a href="/#cologne-intense">芳醇黑瓶系列 · Cologne Intense</a></li>
+                <li><a href="/#scent-pairing">香氛叠穿艺术 · Scent Pairing</a></li>
+              </ul>
+            </div>
+            <div class="mobile-submenu-group">
+              <span class="eyebrow">代表性作品 · ICONS</span>
+              <ul>
+                <li><a href="/product/english-pear-and-freesia-cologne/">英国梨与小苍兰 English Pear</a></li>
+                <li><a href="/product/wood-sage-and-sea-salt-cologne/">鼠尾草与海盐 Wood Sage</a></li>
+                <li><a href="/product/cypress-and-grapevine-cologne-intense/">丝柏与葡萄藤 Cypress & Grapevine</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="mobile-nav-item">
+          <a href="/category/home/" class="mobile-nav-link">
+            <span>居室香氛 · Home</span>
+            <span class="mobile-nav-arrow">›</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="/category/bath-body/" class="mobile-nav-link">
+            <span>沐浴身体 · Bath & Body</span>
+            <span class="mobile-nav-arrow">›</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="/category/gifts/" class="mobile-nav-link">
+            <span>礼赠美学 · Gifting Art</span>
+            <span class="mobile-nav-arrow">›</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="/#scent-pairing" class="mobile-nav-link">
+            <span>香氛混搭 · Layering</span>
+            <span class="mobile-nav-arrow">›</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="/services/" class="mobile-nav-link">
+            <span>品牌工艺 · Craftsmanship</span>
+            <span class="mobile-nav-arrow">›</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-drawer-footer">
+        <a href="/services/#boutiques" class="mobile-util-link">英伦旗舰沙龙 · London Salons</a>
+        <p class="mobile-drawer-note">London · Marylebone Townhouse<br>British Bespoke Perfumery Archive</p>
+      </div>
+    </nav>
+  </aside>
+
   <!-- 顶部滑出式实时检索图鉴浮层 -->
   <section class="search-drawer" id="searchDrawer" aria-label="实时检索香氛作品">
     <div class="container">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+      <div class="search-drawer-header">
         <span class="eyebrow" style="margin:0;">EXPLORE THE FRAGRANCE ARCHIVE</span>
-        <button class="drawer-close" data-close-overlay aria-label="关闭搜索">×</button>
+        <button class="drawer-close" type="button" data-close-overlay aria-label="关闭搜索">×</button>
       </div>
-      <form action="/shop/" method="get" style="display:flex; gap:12px;">
+      <form action="/shop/" method="get" class="search-form">
         <input
           type="search"
           name="q"

@@ -50,7 +50,7 @@
         </p>
       </div>
 
-      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:24px;">
+      <div class="action-group pdp-actions">
         {% if category %}
         <a href="{{ url_for('pages.category_detail', slug=category.slug) }}" class="btn btn-outline">返回{{ category.name_zh }}</a>
         {% endif %}
@@ -80,13 +80,13 @@
 
   <!-- 官方混搭叠穿推荐 -->
   {% if paired_product %}
-  <section class="section" style="padding-top:16px; padding-bottom:48px;">
+  <section class="section pdp-pairing-section">
     <div class="framed-plaque">
       <div class="framed-plaque-inner pairing-banner-inner">
-        <img src="{{ paired_product.image_url }}" alt="{{ paired_product.name_zh }}" style="width:140px; height:140px; object-fit:cover; border:1px solid var(--border-subtle);">
+        <img src="{{ paired_product.image_url }}" alt="{{ paired_product.name_zh }}" class="pairing-banner-img">
         <div>
           <span class="eyebrow">PERFECT SCENT PAIRING · 混搭叠穿灵感</span>
-          <h3 class="serif-title" style="font-size:1.45rem; margin-bottom:6px;">推荐叠穿「{{ paired_product.name_zh }}」({{ paired_product.name_en }})</h3>
+          <h3 class="serif-title pairing-banner-title">推荐叠穿「{{ paired_product.name_zh }}」({{ paired_product.name_en }})</h3>
           <p style="font-size:0.9rem; color:var(--text-muted);">{{ product.pairing_note }}</p>
         </div>
         <a href="{{ url_for('pages.product_detail', slug=paired_product.slug) }}" class="btn btn-outline">品鉴搭档香氛</a>
@@ -97,12 +97,12 @@
 
   <!-- 同系列关联展示 -->
   {% if related_products %}
-  <section class="section" style="padding-top:12px;">
+  <section class="section pdp-related-section">
     <div class="section-header">
       <span class="eyebrow">RELATED ARCHIVE</span>
       <h2 class="serif-title">同系列作品图鉴</h2>
     </div>
-    <div class="product-grid" style="grid-template-columns:repeat(3, 1fr);">
+    <div class="product-grid product-grid--related">
       {% for rel in related_products %}
       <article class="product-card">
         <a href="{{ url_for('pages.product_detail', slug=rel.slug) }}" class="product-media">
