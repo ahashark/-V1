@@ -31,20 +31,22 @@ def api_scent_pairing():
     base_prod = fetch_product_by_slug(base_slug)
     layer_prod = fetch_product_by_slug(layer_slug)
     if not base_prod or not layer_prod:
-        return jsonify({"error": "请选择有效的两款香氛"}), 400
+        return jsonify({"error": "Please select two valid fragrances · 请选择有效的两款香氛"}), 400
 
     if base_slug == layer_slug:
-        harmony_title = f"纯粹双重浓韵 · Pure {base_prod['scent_family']}"
+        harmony_title = f"Pure {base_prod['scent_family']} Intensity · 纯粹双重浓韵"
         harmony_desc = (
-            f"同款叠喷「{base_prod['name_zh']}」可强化{base_prod['top_note']}的明快开篇，"
-            f"并令尾调{base_prod['base_note']}在肌肤上更加深邃持久。"
+            f"Double-layering {base_prod['name_en']} amplifies its luminous {base_prod['top_note'].split('·')[0].strip()} opening "
+            f"while deepening the lingering trail of {base_prod['base_note'].split('·')[0].strip()}. · "
+            f"同款叠喷「{base_prod['name_zh']}」，令前调更显明快、尾调深邃悠长。"
         )
     else:
-        harmony_title = f"{base_prod['scent_family_zh']} × {layer_prod['scent_family_zh']} 专属定制香印"
+        harmony_title = f"{base_prod['scent_family']} × {layer_prod['scent_family']} Bespoke Accord · {base_prod['scent_family_zh']}×{layer_prod['scent_family_zh']}定制香印"
         harmony_desc = (
-            f"先以「{base_prod['name_zh']}」的{base_prod['base_note']}铺垫温润底色，"
-            f"再叠穿「{layer_prod['name_zh']}」的{layer_prod['top_note']}与{layer_prod['heart_note']}，"
-            f"交织出冷暖平衡、独树一帜的英伦高定层次。"
+            f"Anchor the skin with {base_prod['name_en']} ({base_prod['base_note'].split('·')[0].strip()}), "
+            f"then brighten with {layer_prod['name_en']} ({layer_prod['top_note'].split('·')[0].strip()}), "
+            f"weaving a tailored balance of warmth and clarity. · "
+            f"先以「{base_prod['name_zh']}」铺垫基底，再叠穿「{layer_prod['name_zh']}」点亮层次。"
         )
 
     return jsonify(

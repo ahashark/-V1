@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       : products.filter((p) => p.is_bestseller);
 
     if (results.length === 0) {
-      searchResultsEl.innerHTML = `<p style="grid-column:1/-1; color:var(--text-muted); text-align:center; padding:24px 0;">未找到与「${q}」相关的香氛作品，请尝试输入“英国梨”、“海盐”、“丝柏”或“蜡烛”。</p>`;
+      searchResultsEl.innerHTML = `<p style="grid-column:1/-1; color:var(--text-muted); text-align:center; padding:24px 0;">No creations found for "${q}" — try "Pear", "Sea Salt", "Cypress", or "Candle". <span class="zh-sub">· 未找到相关作品</span></p>`;
       return;
     }
 
@@ -139,12 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
         (p) => `
       <a href="/product/${p.slug}/" class="product-card" style="text-align:center;">
         <div class="product-media" style="aspect-ratio:1/0.85;">
-          <img src="${p.image_url}" alt="${p.name_zh}">
+          <img src="${p.image_url}" alt="${p.name_en}">
         </div>
         <div class="search-card-body">
-          <div class="product-scent">${p.scent_family_zh}</div>
+          <div class="product-scent">${p.scent_family} · ${p.collection}</div>
           <div class="serif-title search-card-title">${p.name_en}</div>
-          <div class="search-card-meta">${p.name_zh} · ${p.default_size}</div>
+          <div class="search-card-meta">${p.default_size} · <span class="zh-sub" style="margin-left:0;">${p.name_zh}</span></div>
         </div>
       </a>
     `
@@ -186,21 +186,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const layerProd = products.find((p) => p.slug === layerSlug);
       if (!baseProd || !layerProd) return;
 
+      const cleanEn = (note) => (note || "").split("·")[0].trim();
       let harmonyTitle = "";
       let harmonyDesc = "";
       if (baseSlug === layerSlug) {
-        harmonyTitle = `纯粹双重浓韵 · Pure ${baseProd.scent_family}`;
-        harmonyDesc = `同款叠喷「${baseProd.name_zh}」可强化${baseProd.top_note}的明快开篇，并令尾调${baseProd.base_note}在肌肤上更加深邃持久。`;
+        harmonyTitle = `Pure ${baseProd.scent_family} Intensity · 纯粹双重浓韵`;
+        harmonyDesc = `Double-layering ${baseProd.name_en} amplifies its luminous ${cleanEn(baseProd.top_note)} opening while deepening the lingering trail of ${cleanEn(baseProd.base_note)}. · 同款叠喷「${baseProd.name_zh}」，令前调更显明快、尾调深邃悠长。`;
       } else {
-        harmonyTitle = `${baseProd.scent_family_zh} × ${layerProd.scent_family_zh} 专属定制香印`;
-        harmonyDesc = `先以「${baseProd.name_zh}」的${baseProd.base_note}铺垫温润底色，再叠穿「${layerProd.name_zh}」的${layerProd.top_note}与${layerProd.heart_note}，交织出冷暖平衡、独树一帜的英伦高定层次。`;
+        harmonyTitle = `${baseProd.scent_family} × ${layerProd.scent_family} Bespoke Accord · ${baseProd.scent_family_zh}×${layerProd.scent_family_zh}定制香印`;
+        harmonyDesc = `Anchor the skin with ${baseProd.name_en} (${cleanEn(baseProd.base_note)}), then brighten with ${layerProd.name_en} (${cleanEn(layerProd.top_note)}), weaving a tailored balance of warmth and clarity. · 先以「${baseProd.name_zh}」铺垫基底，再叠穿「${layerProd.name_zh}」点亮层次。`;
       }
 
       document.getElementById("pairingTitle").textContent = harmonyTitle;
       document.getElementById("pairingDesc").textContent = harmonyDesc;
-      document.getElementById("pairTopNote").textContent = `${baseProd.top_note} · ${layerProd.top_note}`;
-      document.getElementById("pairHeartNote").textContent = `${baseProd.heart_note} · ${layerProd.heart_note}`;
-      document.getElementById("pairBaseNote").textContent = `${baseProd.base_note} · ${layerProd.base_note}`;
+      document.getElementById("pairTopNote").textContent = `${cleanEn(baseProd.top_note)} · ${cleanEn(layerProd.top_note)}`;
+      document.getElementById("pairHeartNote").textContent = `${cleanEn(baseProd.heart_note)} · ${cleanEn(layerProd.heart_note)}`;
+      document.getElementById("pairBaseNote").textContent = `${cleanEn(baseProd.base_note)} · ${cleanEn(layerProd.base_note)}`;
 
       const baseLink = document.getElementById("baseProductLink");
       const layerLink = document.getElementById("layerProductLink");
@@ -265,9 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (filtered.length === 0) {
         gridWrap.innerHTML = `
           <div class="empty-catalog-state">
-            <h3 class="serif-title">该筛选条件下暂无收录作品</h3>
-            <p>您可以重置筛选条件，或返回全系图鉴浏览更多灵感。</p>
-            <a href="${baseUrl}" class="btn btn-primary">显示全部作品</a>
+            <h3 class="serif-title">No Creations Found in This Accord</h3>
+            <p>Reset the scent filter or browse the complete archive. <span class="zh-sub">· 当前筛选下暂无作品，可重置筛选浏览全部典藏。</span></p>
+            <a href="${baseUrl}" class="btn btn-primary">View All Creations <span class="zh-sub">查看全部</span></a>
           </div>
         `;
         return;
@@ -281,16 +282,16 @@ document.addEventListener("DOMContentLoaded", () => {
             <article class="product-card">
               <a href="/product/${p.slug}/" class="product-media">
                 ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ""}
-                <img src="${p.image_url}" alt="${p.name_zh}">
+                <img src="${p.image_url}" alt="${p.name_en}">
               </a>
               <div class="product-body">
-                <div class="product-scent">${p.scent_family_zh} · ${p.collection}</div>
+                <div class="product-scent">${p.scent_family} · ${p.collection}</div>
                 <a href="/product/${p.slug}/" class="product-name-en">${p.name_en}</a>
                 <div class="product-name-zh">${p.name_zh}</div>
                 <div class="product-meta">
-                  <span>规格：${(p.variants || []).map((v) => v.size).join(" / ")}</span>
+                  <span>Editions: ${(p.variants || []).map((v) => v.size).join(" / ")}</span>
                 </div>
-                <a href="/product/${p.slug}/" class="btn btn-outline btn-block">探索作品详情 · Discover</a>
+                <a href="/product/${p.slug}/" class="btn btn-outline btn-block">Discover <span class="zh-sub">探索详情</span></a>
               </div>
             </article>
           `

@@ -1,55 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- 1. 主视觉海报 (Hero Editorial Banner) -->
+<!-- 1. Hero Editorial Banner -->
 <section class="hero-section">
   <div class="container hero-layout">
     <div class="hero-content-wrap">
       <div class="framed-plaque">
         <div class="framed-plaque-inner">
-          <span class="eyebrow">AUTUMN BRITISH ORCHARD · 经典果香花韵</span>
-          <h1 class="serif-title hero-title">英国梨与小苍兰<br>English Pear & Freesia</h1>
+          <span class="eyebrow">AUTUMN BRITISH ORCHARD <span class="zh-sub">· 英伦秋日果园</span></span>
+          <h1 class="serif-title hero-title">
+            English Pear & Freesia
+            <span class="hero-title-zh">英国梨与小苍兰古龙水</span>
+          </h1>
           <p class="hero-desc">
-            撷取初熟威廉梨的清甜多汁，轻柔包裹于纯白小苍兰花束之中，尾调沉淀温润琥珀与广藿香木质余韵。既可单独穿戴，亦可随心叠穿混搭。
+            The sensuous freshness of just-ripe King William pears wrapped in a cool bouquet of white freesias, mellowed by amber, patchouli, and sheer woods. Wear solo or layer freely.
+            <span class="zh-aux-block">撷取初熟威廉梨清甜包裹于纯白小苍兰花束，沉淀温润琥珀木质余韵。</span>
           </p>
           <div class="hero-actions">
-            <a href="{{ url_for('pages.product_detail', slug='english-pear-and-freesia-cologne') }}" class="btn btn-primary">品鉴标志性香氛</a>
-            <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="btn btn-outline">浏览古龙水图鉴</a>
+            <a href="{{ url_for('pages.product_detail', slug='english-pear-and-freesia-cologne') }}" class="btn btn-primary">Discover the Icon <span class="zh-sub">品鉴经典</span></a>
+            <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="btn btn-outline">Explore Colognes <span class="zh-sub">古龙水</span></a>
           </div>
         </div>
       </div>
     </div>
     <div class="hero-visual">
-      <img src="{{ url_for('static', filename='images/hero_editorial.jpg') }}" alt="英国梨与小苍兰英伦静物海报">
+      <img src="{{ url_for('static', filename='images/hero_editorial.jpg') }}" alt="English Pear & Freesia Editorial">
     </div>
   </div>
 </section>
 
-<!-- 2. 三大品牌美学理念条 (Brand Pillars) -->
+<!-- 2. Brand Pillars Strip -->
 <section class="pillars-strip">
   <div class="container pillars-grid">
     <div class="pillar-item">
-      <div class="pillar-title">英伦调香传承 · British Perfumery</div>
-      <div class="pillar-sub">甄选纯粹花果、海岸矿物与珍稀木质原料匠心调配</div>
+      <div class="pillar-title">British Bespoke Perfumery <span class="zh-sub">英伦调香</span></div>
+      <div class="pillar-sub">Pure orchard fruits, coastal minerals & rare woods · 纯粹原料匠心调配</div>
     </div>
     <div class="pillar-item">
-      <div class="pillar-title">自由叠穿哲学 · Scent Pairing™</div>
-      <div class="pillar-sub">多款香氛随心混搭，交织冷暖平衡的专属香气印记</div>
+      <div class="pillar-title">The Art of Scent Pairing™ <span class="zh-sub">自由叠穿</span></div>
+      <div class="pillar-sub">Layer fragrances to compose a bespoke personal trail · 混搭专属香印</div>
     </div>
     <div class="pillar-item">
-      <div class="pillar-title">标志性礼盒美学 · Iconic Packaging</div>
-      <div class="pillar-sub">暖奶油色硬质礼盒手工系上利落黑色罗纹丝带</div>
+      <div class="pillar-title">Iconic Presentation <span class="zh-sub">礼盒美学</span></div>
+      <div class="pillar-sub">Monochrome rigid box hand-tied with grosgrain ribbon · 手工黑丝带礼装</div>
     </div>
   </div>
 </section>
 
-<!-- 3. 殿堂级代表作品展示 (Iconic Creations) -->
+<!-- 3. Iconic Creations -->
 <section class="section">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">SIGNATURE ARCHIVE</span>
-      <h2 class="serif-title">殿堂级代表作品 · Iconic Creations</h2>
-      <p>探索品牌最具代表性的经典古龙水、手工浇筑居室香氛蜡烛与典藏礼盒视觉。</p>
+      <h2 class="serif-title">Iconic Creations <span class="zh-caption">殿堂级代表作品</span></h2>
+      <p>Explore our most beloved colognes, hand-poured home candles, and curated gift collections.</p>
     </div>
 
     <div class="product-grid">
@@ -59,17 +63,17 @@
           {% if product.badge %}
           <span class="product-badge">{{ product.badge }}</span>
           {% endif %}
-          <img src="{{ product.image_url }}" alt="{{ product.name_zh }}">
+          <img src="{{ product.image_url }}" alt="{{ product.name_en }}">
         </a>
         <div class="product-body">
-          <div class="product-scent">{{ product.scent_family_zh }} · {{ product.scent_family }}</div>
+          <div class="product-scent">{{ product.scent_family }} · {{ product.collection }}</div>
           <a href="{{ url_for('pages.product_detail', slug=product.slug) }}" class="product-name-en">{{ product.name_en }}</a>
           <div class="product-name-zh">{{ product.name_zh }}</div>
           <div class="product-meta">
-            <span>规格：{{ product.variants | map(attribute='size') | join(' / ') }}</span>
+            <span>Editions: {{ product.variants | map(attribute='size') | join(' / ') }}</span>
           </div>
           <a href="{{ url_for('pages.product_detail', slug=product.slug) }}" class="btn btn-outline btn-block">
-            探索作品详情 · Discover
+            Discover <span class="zh-sub">探索详情</span>
           </a>
         </div>
       </article>
@@ -78,26 +82,27 @@
   </div>
 </section>
 
-<!-- 4. 四大核心品类画廊 (Curated Universes) -->
+<!-- 4. Curated Universes -->
 <section class="section section-alt">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">CURATED UNIVERSES</span>
-      <h2 class="serif-title">探索四大香氛领域</h2>
-      <p>从腕间萦绕的个性古龙水，到点亮空间氛围的居室烛光与礼赠美学。</p>
+      <h2 class="serif-title">Explore by Category <span class="zh-caption">探索四大香氛领域</span></h2>
+      <p>From signature colognes worn on the pulse to luminous home candles and the art of gifting.</p>
     </div>
 
     <div class="category-grid">
       {% for cat in categories %}
       <a href="{{ url_for('pages.category_detail', slug=cat.slug) }}" class="category-card">
         <div class="category-card-img">
-          <img src="{{ cat.hero_image }}" alt="{{ cat.name_zh }}">
+          <img src="{{ cat.hero_image }}" alt="{{ cat.name_en }}">
         </div>
         <div class="category-card-body">
-          <span class="eyebrow" style="margin-bottom:4px;">{{ cat.name_en }}</span>
-          <h3 class="serif-title">{{ cat.name_zh }}</h3>
-          <p>{{ cat.description[:38] }}…</p>
-          <span class="link-underline">进入图鉴 · Explore</span>
+          <span class="eyebrow" style="margin-bottom:4px;">{{ cat.eyebrow }}</span>
+          <h3 class="serif-title">{{ cat.name_en }}</h3>
+          <div class="category-name-zh">{{ cat.name_zh }}</div>
+          <p>{{ cat.description.split(' · ')[0] }}</p>
+          <span class="link-underline">Explore <span class="zh-sub">进入图鉴</span></span>
         </div>
       </a>
       {% endfor %}
@@ -105,89 +110,93 @@
   </div>
 </section>
 
-<!-- 5. 芳醇黑瓶深色高对比专区 (Cologne Intense Showcase) -->
+<!-- 5. Cologne Intense Showcase -->
 <section class="intense-section" id="cologne-intense">
   <div class="container intense-layout">
     <div class="intense-visual">
-      <img src="{{ url_for('static', filename='images/cologne_intense.jpg') }}" alt="Cologne Intense 芳醇古龙水系列">
+      <img src="{{ url_for('static', filename='images/cologne_intense.jpg') }}" alt="Cologne Intense Collection">
     </div>
     <div>
-      <span class="eyebrow" style="color:#c5a880;">RARE & PRECIOUS INGREDIENTS</span>
-      <h2 class="serif-title intense-title">芳醇黑瓶古龙水系列<br>Cologne Intense</h2>
-      <p style="color:#cccccc; font-size:0.95rem; max-width:540px;">
-        遍寻世界各地珍稀树脂、古老木质与馥郁香料，盛装于深邃烟熏黑晶玻璃瓶身之中，呈现层次浓郁、留香悠长的感官盛宴。
+      <span class="eyebrow" style="color:#c5a880;">RARE & PRECIOUS INGREDIENTS <span class="zh-sub">· 珍稀馥郁原料</span></span>
+      <h2 class="serif-title intense-title">
+        Cologne Intense
+        <span class="intense-title-zh">芳醇黑瓶古龙水系列</span>
+      </h2>
+      <p style="color:#d0d0d0; font-size:0.95rem; max-width:540px;">
+        Travelling the world in search of treasured resins, ancient woods, and enveloping spices—housed in smoked obsidian glass for a deep, sensual trail.
+        <span class="zh-aux-block" style="color:#9e9e9e;">甄选世界各地珍稀树脂与古老木质，盛装于深邃黑晶瓶身，留香悠长。</span>
       </p>
 
       <div class="intense-cards">
         {% for item in intense_featured %}
         <div class="intense-mini-card">
           <h4>{{ item.name_en }}</h4>
-          <p>{{ item.name_zh }} · {{ item.scent_family_zh }}</p>
-          <a href="{{ url_for('pages.product_detail', slug=item.slug) }}" class="btn btn-light btn-sm">品鉴详情</a>
+          <p>{{ item.scent_family }} · <span class="zh-sub" style="margin-left:0;">{{ item.name_zh }}</span></p>
+          <a href="{{ url_for('pages.product_detail', slug=item.slug) }}" class="btn btn-light btn-sm">Discover <span class="zh-sub">品鉴</span></a>
         </div>
         {% endfor %}
       </div>
 
-      <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="btn btn-light intense-cta">浏览全系古龙水作品</a>
+      <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="btn btn-light intense-cta">Explore All Colognes <span class="zh-sub">全部古龙水</span></a>
     </div>
   </div>
 </section>
 
-<!-- 6. 香氛叠穿品鉴指南 (Scent Pairing Guide - 纯品鉴展示) -->
+<!-- 6. Scent Pairing Guide -->
 <section class="section" id="scent-pairing">
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">THE ART OF SCENT PAIRING™</span>
-      <h2 class="serif-title">香氛叠穿混搭品鉴</h2>
-      <p>任选两款古龙水组合品鉴，查看前调、中调与尾调交融后的香气层次。</p>
+      <h2 class="serif-title">Bespoke Scent Pairing™ <span class="zh-caption">香氛叠穿混搭品鉴</span></h2>
+      <p>Combine any two colognes to preview how their top, heart, and base notes intertwine on the skin.</p>
     </div>
 
     <div class="pairing-box">
       <div class="pairing-box-inner">
         <div class="pairing-controls">
           <div class="form-group">
-            <label for="baseScentSelect">第一步：温暖基底香氛 · Base Scent</label>
+            <label for="baseScentSelect">Step 01 · Base Fragrance <span class="zh-sub">基底香氛</span></label>
             <select id="baseScentSelect" class="luxury-select">
               {% for c in colognes_for_pairing %}
-              <option value="{{ c.slug }}" {% if loop.index == 2 %}selected{% endif %}>{{ c.name_zh }} ({{ c.name_en }})</option>
+              <option value="{{ c.slug }}" {% if loop.index == 2 %}selected{% endif %}>{{ c.name_en }} · {{ c.name_zh }}</option>
               {% endfor %}
             </select>
           </div>
           <div class="pairing-plus">+</div>
           <div class="form-group">
-            <label for="layerScentSelect">第二步：叠穿点亮香氛 · Layering Scent</label>
+            <label for="layerScentSelect">Step 02 · Layering Accent <span class="zh-sub">叠穿点亮</span></label>
             <select id="layerScentSelect" class="luxury-select">
               {% for c in colognes_for_pairing %}
-              <option value="{{ c.slug }}" {% if loop.index == 1 %}selected{% endif %}>{{ c.name_zh }} ({{ c.name_en }})</option>
+              <option value="{{ c.slug }}" {% if loop.index == 1 %}selected{% endif %}>{{ c.name_en }} · {{ c.name_zh }}</option>
               {% endfor %}
             </select>
           </div>
-          <button type="button" class="btn btn-primary" id="generatePairingBtn">查看叠穿层次</button>
+          <button type="button" class="btn btn-primary" id="generatePairingBtn">Compose Accord <span class="zh-sub">查看叠穿</span></button>
         </div>
 
         <div class="pairing-result visible" id="pairingResultPanel">
-          <span class="eyebrow">BESPOKE LAYERING HARMONY</span>
-          <h3 class="serif-title pairing-harmony-title" id="pairingTitle">木质调 × 果香调 专属定制香印</h3>
+          <span class="eyebrow">BESPOKE LAYERING HARMONY <span class="zh-sub">· 专属定制香印</span></span>
+          <h3 class="serif-title pairing-harmony-title" id="pairingTitle">Woody × Fruity Bespoke Accord · 木质×果香定制香印</h3>
           <p id="pairingDesc" style="color:var(--text-muted); font-size:0.92rem;">
-            先以「鼠尾草与海盐古龙水」的鼠尾草铺垫温润海岸木质底色，再叠穿「英国梨与小苍兰古龙水」的威廉梨与白色小苍兰，交织出清冽而又甜美灵动的英伦层次。
+            Anchor the skin with Wood Sage & Sea Salt Cologne (Sage & Driftwood), then brighten with English Pear & Freesia Cologne (King William Pear), weaving coastal mineral freshness with crisp orchard fruit. · 先以「鼠尾草与海盐」铺垫海岸木质底色，再叠穿「英国梨与小苍兰」点亮灵动果香。
           </p>
           <div class="pairing-notes-grid">
             <div>
-              <span class="eyebrow">前调交融 · TOP</span>
-              <div id="pairTopNote" class="serif-title" style="font-size:1.05rem;">黄葵籽 · 威廉梨</div>
+              <span class="eyebrow">TOP ACCORD <span class="zh-sub">· 前调</span></span>
+              <div id="pairTopNote" class="serif-title" style="font-size:1.05rem;">Ambrette Seeds · King William Pear</div>
             </div>
             <div>
-              <span class="eyebrow">中调核心 · HEART</span>
-              <div id="pairHeartNote" class="serif-title" style="font-size:1.05rem;">海盐矿物 · 白色小苍兰</div>
+              <span class="eyebrow">HEART ACCORD <span class="zh-sub">· 中调</span></span>
+              <div id="pairHeartNote" class="serif-title" style="font-size:1.05rem;">Sea Salt · White Freesia</div>
             </div>
             <div>
-              <span class="eyebrow">尾调余韵 · BASE</span>
-              <div id="pairBaseNote" class="serif-title" style="font-size:1.05rem;">鼠尾草 · 广藿香与琥珀</div>
+              <span class="eyebrow">BASE ACCORD <span class="zh-sub">· 尾调</span></span>
+              <div id="pairBaseNote" class="serif-title" style="font-size:1.05rem;">Sage & Driftwood · Patchouli & Amber</div>
             </div>
           </div>
           <div class="action-group">
-            <a href="{{ url_for('pages.product_detail', slug='wood-sage-and-sea-salt-cologne') }}" id="baseProductLink" class="btn btn-outline">品鉴基底香氛</a>
-            <a href="{{ url_for('pages.product_detail', slug='english-pear-and-freesia-cologne') }}" id="layerProductLink" class="btn btn-outline">品鉴叠穿香氛</a>
+            <a href="{{ url_for('pages.product_detail', slug='wood-sage-and-sea-salt-cologne') }}" id="baseProductLink" class="btn btn-outline">Explore Base Scent <span class="zh-sub">基底作品</span></a>
+            <a href="{{ url_for('pages.product_detail', slug='english-pear-and-freesia-cologne') }}" id="layerProductLink" class="btn btn-outline">Explore Layering Scent <span class="zh-sub">叠穿作品</span></a>
           </div>
         </div>
       </div>
@@ -195,21 +204,25 @@
   </div>
 </section>
 
-<!-- 7. 英伦高定礼盒工艺视觉板块 -->
+<!-- 7. Iconic Gift Box Split -->
 <section class="section section-alt">
   <div class="container gifting-split">
     <div class="gifting-visual">
-      <img src="{{ url_for('static', filename='images/gift_box_ritual.svg') }}" alt="标志性暖米色黑丝带礼盒">
+      <img src="{{ url_for('static', filename='images/gift_box_ritual.svg') }}" alt="Iconic Monochrome Gift Box">
     </div>
     <div>
-      <span class="eyebrow">THE ICONIC GIFT BOX</span>
-      <h2 class="serif-title split-title">系上黑丝带的英伦美学</h2>
+      <span class="eyebrow">THE ICONIC GIFT BOX <span class="zh-sub">· 礼赠仪式</span></span>
+      <h2 class="serif-title split-title">
+        Tied with a Black Grosgrain Bow
+        <span class="zh-caption">系上黑丝带的英伦礼盒美学</span>
+      </h2>
       <p style="color:var(--text-muted); margin-bottom:24px;">
-        源自伦敦的经典包装视觉语言：温润质感的暖奶油色硬质方盒镶嵌利落黑边，内衬轻盈黑色雪梨纸，并由工匠手工挽就挺括罗纹蝴蝶结，将极简克制与仪式感融为一体。
+        Every creation is nestled in crisp black tissue within our signature monochrome rigid box and hand-finished with a tailored grosgrain bow—an unmistakable emblem of British understatement.
+        <span class="zh-aux-block">高定硬质方盒内衬轻盈黑色雪梨纸，由工匠手工挽就挺括罗纹蝴蝶结，将极简克制与仪式感融为一体。</span>
       </p>
       <div class="action-group">
-        <a href="{{ url_for('pages.category_detail', slug='gifts') }}" class="btn btn-primary">浏览礼盒系列图鉴</a>
-        <a href="{{ url_for('pages.services_page') }}" class="btn btn-outline">探索品牌包装与工艺</a>
+        <a href="{{ url_for('pages.category_detail', slug='gifts') }}" class="btn btn-primary">Explore Gift Sets <span class="zh-sub">礼盒系列</span></a>
+        <a href="{{ url_for('pages.services_page') }}" class="btn btn-outline">Discover Craftsmanship <span class="zh-sub">包装与工艺</span></a>
       </div>
     </div>
   </div>

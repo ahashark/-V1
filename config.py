@@ -21,9 +21,9 @@ class Config:
     BRAND_NAME = "MAISON L'ATELIER"
     BRAND_ORIGIN = "LONDON"
 
-    # 顶部轮播品牌导览文案（纯展示）
+    # 顶部轮播品牌导览文案（英文主导，中文辅助）
     ANNOUNCEMENTS = [
-        "英伦高定香氛典藏：甄选纯粹自然原料，诠释当代极简调香美学 | British Bespoke Perfumery",
-        "探索 Scent Pairing™ 香氛叠穿艺术，自由混搭缔造独一无二的私人香印 | The Art of Scent Pairing",
-        "标志性暖奶油色礼盒与黑色罗纹丝带，致敬源自伦敦的优雅礼赠传统 | Iconic British Craftsmanship",
+        "British Bespoke Perfumery — Crafted in London with pure botanical ingredients · 英伦高定调香典藏",
+        "Discover Scent Pairing™ — Layer fragrances to compose your personal signature · 自由叠穿艺术",
+        "Iconic Presentation — Signature monochrome box hand-tied with grosgrain ribbon · 标志性礼盒美学",
     ]

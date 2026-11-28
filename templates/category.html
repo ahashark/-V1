@@ -1,26 +1,35 @@
 {% extends "base.html" %}
 
-{% block title %}{{ category.name_zh }} ({{ category.name_en }}) | {{ brand_name }}{% endblock %}
+{% block title %}{{ category.name_en }} · {{ category.name_zh }} | {{ brand_name }}{% endblock %}
 
 {% block content %}
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow">{{ category.eyebrow }}</span>
-    <h1 class="serif-title">{{ category.name_en }} · {{ category.name_zh }}</h1>
-    <p>{{ category.description }}</p>
+    <h1 class="serif-title">
+      {{ category.name_en }}
+      <span class="zh-caption">{{ category.name_zh }}</span>
+    </h1>
+    {% set cat_desc_parts = category.description.split(' · ') %}
+    <p>
+      {{ cat_desc_parts[0] }}
+      {% if cat_desc_parts|length > 1 %}
+      <span class="zh-aux-block">{{ cat_desc_parts[1] }}</span>
+      {% endif %}
+    </p>
     <p id="searchKeywordHint" style="margin-top:12px; color:var(--brand-black); {% if not search_query %}display:none;{% endif %}">
-      当前检索关键词：「<strong id="searchKeywordText">{{ search_query }}</strong>」（共 <span id="searchCountText">{{ products|length }}</span> 件作品）
+      Showing <span id="searchCountText">{{ products|length }}</span> results for "<strong id="searchKeywordText">{{ search_query }}</strong>" <span class="zh-sub">· 检索结果</span>
     </p>
   </div>
 </section>
 
 <section class="section catalog-section">
   <div class="container">
-    <!-- 香调筛选与排序展示工具栏 -->
+    <!-- Scent Family Filter & Sort Toolbar -->
     <div class="filter-toolbar" id="catalogToolbar" data-category-slug="{{ category.slug }}" data-base-url="{{ url_for('pages.shop_all') if is_shop_all else url_for('pages.category_detail', slug=category.slug) }}">
-      <div class="filter-pills" role="navigation" aria-label="按香调筛选">
+      <div class="filter-pills" role="navigation" aria-label="Filter by scent family">
         {% set base_url = url_for('pages.shop_all') if is_shop_all else url_for('pages.category_detail', slug=category.slug) %}
-        <a href="{{ base_url }}" data-scent="" class="filter-pill {% if not current_scent %}active{% endif %}">全部香调 · All</a>
+        <a href="{{ base_url }}" data-scent="" class="filter-pill {% if not current_scent %}active{% endif %}">All · 全部</a>
         {% for sf in scent_families %}
         <a
           href="{{ base_url }}?scent={{ sf.key }}"
@@ -33,11 +42,11 @@
       </div>
 
       <form method="get" action="{{ base_url }}" id="catalogSortForm" class="sort-form">
-        <label for="sortSelect" class="sort-label">排列方式：</label>
+        <label for="sortSelect" class="sort-label">Sort by <span class="zh-sub">排序</span></label>
         <select id="sortSelect" name="sort" class="luxury-select sort-select">
-          <option value="featured" {% if current_sort == 'featured' %}selected{% endif %}>代表作优先 · Featured</option>
-          <option value="name_asc" {% if current_sort == 'name_asc' %}selected{% endif %}>名称字母序 · A–Z</option>
-          <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>最新收录 · Newest</option>
+          <option value="featured" {% if current_sort == 'featured' %}selected{% endif %}>Featured · 代表作</option>
+          <option value="name_asc" {% if current_sort == 'name_asc' %}selected{% endif %}>Name A–Z · 字母序</option>
+          <option value="newest" {% if current_sort == 'newest' %}selected{% endif %}>Newest · 最新</option>
         </select>
       </form>
     </div>
@@ -51,17 +60,17 @@
           {% if product.badge %}
           <span class="product-badge">{{ product.badge }}</span>
           {% endif %}
-          <img src="{{ product.image_url }}" alt="{{ product.name_zh }}">
+          <img src="{{ product.image_url }}" alt="{{ product.name_en }}">
         </a>
         <div class="product-body">
-          <div class="product-scent">{{ product.scent_family_zh }} · {{ product.collection }}</div>
+          <div class="product-scent">{{ product.scent_family }} · {{ product.collection }}</div>
           <a href="{{ url_for('pages.product_detail', slug=product.slug) }}" class="product-name-en">{{ product.name_en }}</a>
           <div class="product-name-zh">{{ product.name_zh }}</div>
           <div class="product-meta">
-            <span>规格：{{ product.variants | map(attribute='size') | join(' / ') }}</span>
+            <span>Editions: {{ product.variants | map(attribute='size') | join(' / ') }}</span>
           </div>
           <a href="{{ url_for('pages.product_detail', slug=product.slug) }}" class="btn btn-outline btn-block">
-            探索作品详情 · Discover
+            Discover <span class="zh-sub">探索详情</span>
           </a>
         </div>
       </article>
@@ -69,9 +78,9 @@
     </div>
     {% else %}
     <div class="empty-catalog-state">
-      <h3 class="serif-title">该香调下暂无收录作品</h3>
-      <p>您可以重置香调筛选条件，或返回全系图鉴浏览更多灵感。</p>
-      <a href="{{ base_url }}" class="btn btn-primary">显示全部作品</a>
+      <h3 class="serif-title">No Creations Found in This Accord</h3>
+      <p>Reset the scent filter or browse the complete archive. <span class="zh-sub">· 当前香调下暂无作品，可重置筛选浏览全部典藏。</span></p>
+      <a href="{{ base_url }}" class="btn btn-primary">View All Creations <span class="zh-sub">查看全部</span></a>
     </div>
     {% endif %}
     </div>

@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}品牌工艺与英伦美学 | {{ brand_name }}{% endblock %}
+{% block title %}Craftsmanship & Heritage · 品牌工艺 | {{ brand_name }}{% endblock %}
 
 {% block content %}
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow">BRITISH CRAFTSMANSHIP & HERITAGE</span>
-    <h1 class="serif-title">品牌工艺与英伦美学</h1>
-    <p>从手工罗纹丝带礼盒、水晶瓶身镌刻艺术，到伦敦联排别墅香氛沙龙，每一处细节皆诠释低调克制的英伦格调。</p>
+    <h1 class="serif-title">
+      Craftsmanship & Bespoke Services
+      <span class="zh-caption">品牌工艺与英伦美学</span>
+    </h1>
+    <p>
+      From hand-tied grosgrain gift boxes and bespoke bottle engraving to our Marylebone townhouse salons, every detail celebrates understated British elegance.
+      <span class="zh-aux-block">从手工罗纹丝带礼盒、水晶瓶身镌刻到伦敦联排别墅香氛沙龙，诠释克制隽永的英伦格调。</span>
+    </p>
   </div>
 </section>
 
@@ -17,33 +23,45 @@
       <div class="framed-plaque">
         <div class="framed-plaque-inner">
           <span class="eyebrow">01 · SIGNATURE PACKAGING</span>
-          <h3 class="serif-title craft-card-title">标志性黑丝带礼盒</h3>
+          <h3 class="serif-title craft-card-title">
+            The Iconic Ribboned Box
+            <span class="zh-caption">标志性黑丝带礼盒</span>
+          </h3>
           <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px; line-height:1.75;">
-            灵感源自乔治亚时期建筑线条，采用温润厚实的暖奶油色特种纸盒镶嵌炭黑边框，内衬香氛黑色雪梨纸，并以手工系上经典罗纹蝴蝶结。
+            Inspired by Georgian architectural lines, our rigid monochrome box is lined with scented black tissue and hand-finished with a tailored grosgrain bow.
+            <span class="zh-aux-block">灵感源自乔治亚建筑线条，高定硬质礼盒内衬黑色雪梨纸并手工系上经典罗纹蝴蝶结。</span>
           </p>
-          <a href="{{ url_for('pages.category_detail', slug='gifts') }}" class="link-underline">浏览礼盒图鉴</a>
+          <a href="{{ url_for('pages.category_detail', slug='gifts') }}" class="link-underline">Explore Gift Sets <span class="zh-sub">浏览礼盒</span></a>
         </div>
       </div>
 
       <div class="framed-plaque">
         <div class="framed-plaque-inner">
           <span class="eyebrow">02 · ART OF ENGRAVING</span>
-          <h3 class="serif-title craft-card-title">水晶瓶身镌刻艺术</h3>
+          <h3 class="serif-title craft-card-title">
+            Bespoke Bottle Engraving
+            <span class="zh-caption">水晶瓶身镌刻艺术</span>
+          </h3>
           <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px; line-height:1.75;">
-            对称利落的透明方形玻璃瓶身与抛光金属瓶盖相映成趣，工匠可在瓶身细致雕琢英伦衬线字母缩写或纪念日期，赋予器物永恒温度。
+            Architectural crystal-clear flacons and polished caps can be personalized by master engravers with British serif initials or a memorable date.
+            <span class="zh-aux-block">对称利落的透明方形玻璃瓶身支持手工雕琢衬线字母缩写或纪念日期。</span>
           </p>
-          <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="link-underline">欣赏古龙水瓶身设计</a>
+          <a href="{{ url_for('pages.category_detail', slug='colognes') }}" class="link-underline">Explore Colognes <span class="zh-sub">欣赏古龙水</span></a>
         </div>
       </div>
 
       <div class="framed-plaque" id="boutiques">
         <div class="framed-plaque-inner">
           <span class="eyebrow">03 · LONDON TOWNHOUSE</span>
-          <h3 class="serif-title craft-card-title">伦敦马里波恩沙龙</h3>
+          <h3 class="serif-title craft-card-title">
+            Marylebone Flagship Salon
+            <span class="zh-caption">伦敦马里波恩沙龙</span>
+          </h3>
           <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:18px; line-height:1.75;">
-            位于伦敦格洛斯特广场（Gloucester Place）的英伦联排别墅空间，设有闻香试饮吧台（Tasting Bar™）与居室烛光陈列厅，静候寻香之旅。
+            Nestled on Gloucester Place in Marylebone, our townhouse salon features the Tasting Bar™ and a candlelit home scent gallery for private consultations.
+            <span class="zh-aux-block">位于伦敦格洛斯特广场的联排别墅空间，设有闻香吧台与居室烛光陈列厅。</span>
           </p>
-          <a href="{{ url_for('pages.shop_all') }}" class="link-underline">探索全系馆藏</a>
+          <a href="{{ url_for('pages.shop_all') }}" class="link-underline">Explore Complete Archive <span class="zh-sub">全系馆藏</span></a>
         </div>
       </div>
     </div>

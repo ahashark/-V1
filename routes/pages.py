@@ -14,11 +14,11 @@ from core.database import (
 pages_bp = Blueprint("pages", __name__)
 
 SCENT_FAMILIES = [
-    {"key": "Fruity", "label": "果香调 · Fruity"},
-    {"key": "Woody", "label": "木质调 · Woody"},
-    {"key": "Floral", "label": "花香调 · Floral"},
-    {"key": "Citrus", "label": "柑橘调 · Citrus"},
-    {"key": "Amber", "label": "琥珀东方调 · Amber"},
+    {"key": "Fruity", "label": "Fruity · 果香"},
+    {"key": "Woody", "label": "Woody · 木质"},
+    {"key": "Floral", "label": "Floral · 花香"},
+    {"key": "Citrus", "label": "Citrus · 柑橘"},
+    {"key": "Amber", "label": "Amber · 琥珀"},
 ]
 
 
@@ -55,7 +55,7 @@ def shop_all():
         "name_en": "All Creations",
         "name_zh": "全部香氛与奢护典藏",
         "eyebrow": "THE COMPLETE ARCHIVE",
-        "description": "探索经典古龙水、深邃芳醇黑瓶、居室香氛艺术及标志性礼盒全系列图鉴。",
+        "description": "Explore our complete archive of classic colognes, rich Cologne Intense, home candles, and signature gifts. · 探索经典古龙水、芳醇黑瓶、居室香氛与典藏礼盒全系作品。",
         "hero_image": "/static/images/hero_editorial.jpg",
     }
     return render_template(

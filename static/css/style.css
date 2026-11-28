@@ -105,6 +105,63 @@ button, input, select {
   line-height: 1.22;
 }
 
+/* English-Dominant / Chinese-Auxiliary Hierarchy Helpers */
+.zh-sub {
+  font-family: var(--font-sans);
+  font-size: 0.84em;
+  opacity: 0.65;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  margin-left: 3px;
+}
+
+.zh-caption {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.zh-aux-block {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.58;
+  margin-top: 6px;
+  opacity: 0.88;
+}
+
+.zh-aux-footer {
+  font-size: 0.76rem;
+  color: #8c8c8c;
+  line-height: 1.65;
+  margin-top: 10px;
+}
+
+.hero-title-zh {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  letter-spacing: 0.14em;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.intense-title-zh {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: #a6a6a6;
+  letter-spacing: 0.14em;
+  font-weight: 400;
+  margin-top: 6px;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -293,7 +350,7 @@ button, input, select {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 34px;
+  gap: clamp(16px, 2vw, 32px);
   flex-wrap: wrap;
 }
 
@@ -303,6 +360,7 @@ button, input, select {
 
 .nav-link {
   display: inline-block;
+  white-space: nowrap;
   padding: 13px 0;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
@@ -589,14 +647,16 @@ button, input, select {
 
 .product-name-en {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
-  line-height: 1.28;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.26;
   margin-bottom: 4px;
 }
 
 .product-name-zh {
-  font-size: 0.88rem;
-  color: var(--brand-charcoal);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
   margin-bottom: 10px;
 }
 
@@ -646,8 +706,16 @@ button, input, select {
 }
 
 .category-card-body h3 {
-  font-size: 1.28rem;
-  margin-bottom: 4px;
+  font-size: 1.32rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.category-name-zh {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
 }
 
 .category-card-body p {
@@ -890,9 +958,10 @@ button, input, select {
 }
 
 .pdp-name-zh {
-  font-size: 1.15rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
   margin-bottom: 14px;
-  color: var(--brand-charcoal);
+  color: var(--text-muted);
 }
 
 .variant-group {
@@ -1725,6 +1794,27 @@ button, input, select {
     font-size: 0.62rem;
     letter-spacing: 0.12em;
     margin-bottom: 6px;
+  }
+
+  .zh-caption {
+    font-size: 0.74rem;
+    margin-top: 3px;
+  }
+
+  .zh-aux-block {
+    font-size: 0.74rem;
+    margin-top: 4px;
+  }
+
+  .hero-title-zh,
+  .intense-title-zh {
+    font-size: 0.78rem;
+    margin-top: 5px;
+  }
+
+  .category-name-zh {
+    font-size: 0.72rem;
+    margin-bottom: 5px;
   }
 
   /* 2-Column Mobile Boutique Product & Category Grids */

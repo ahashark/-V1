@@ -1,33 +1,39 @@
 {% extends "base.html" %}
 
-{% block title %}{{ product.name_zh }} ({{ product.name_en }}) | {{ brand_name }}{% endblock %}
+{% block title %}{{ product.name_en }} · {{ product.name_zh }} | {{ brand_name }}{% endblock %}
 
 {% block content %}
 <div class="container">
-  <nav class="breadcrumb" aria-label="面包屑导航">
-    <a href="{{ url_for('pages.index') }}">首页 Home</a> &nbsp;/&nbsp;
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ url_for('pages.index') }}">Home <span class="zh-sub">首页</span></a> &nbsp;/&nbsp;
     {% if category %}
-    <a href="{{ url_for('pages.category_detail', slug=category.slug) }}">{{ category.name_zh }}</a> &nbsp;/&nbsp;
+    <a href="{{ url_for('pages.category_detail', slug=category.slug) }}">{{ category.name_en }} <span class="zh-sub">{{ category.name_zh }}</span></a> &nbsp;/&nbsp;
     {% endif %}
-    <span>{{ product.name_zh }}</span>
+    <span>{{ product.name_en }}</span>
   </nav>
 
   <section class="pdp-grid">
-    <!-- 左侧高定静物视觉 -->
+    <!-- Left Studio Visual -->
     <div class="pdp-gallery">
-      <img src="{{ product.image_url }}" alt="{{ product.name_zh }}">
+      <img src="{{ product.image_url }}" alt="{{ product.name_en }}">
     </div>
 
-    <!-- 右侧作品品鉴与规格静态档案 -->
+    <!-- Right Olfactory Dossier -->
     <div class="pdp-info">
-      <span class="eyebrow">{{ product.collection }} · {{ product.scent_family_zh }} ({{ product.scent_family }})</span>
+      <span class="eyebrow">{{ product.collection }} · {{ product.scent_family }} <span class="zh-sub">({{ product.scent_family_zh }})</span></span>
       <h1 class="serif-title">{{ product.name_en }}</h1>
       <div class="pdp-name-zh">{{ product.name_zh }}</div>
-      <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:26px;">{{ product.subtitle }}</p>
+      {% set sub_parts = product.subtitle.split(' · ') %}
+      <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:26px;">
+        {{ sub_parts[0] }}
+        {% if sub_parts|length > 1 %}
+        <span class="zh-aux-block">{{ sub_parts[1] }}</span>
+        {% endif %}
+      </p>
 
-      <!-- 容量规格一览（纯静态展示标签） -->
+      <!-- Bottle Editions -->
       <div class="variant-group">
-        <span class="eyebrow">典藏容量规格 · BOTTLE EDITIONS</span>
+        <span class="eyebrow">BOTTLE EDITIONS <span class="zh-sub">· 容量规格</span></span>
         <div class="spec-tags">
           {% for v in product.variants %}
           <span class="spec-tag {% if v.size == product.default_size %}featured{% endif %}">
@@ -38,84 +44,100 @@
       </div>
 
       <div style="margin-top:24px; padding-top:22px; border-top:1px solid var(--border-subtle);">
-        <span class="eyebrow">FRAGRANCE STORY · 调香灵感</span>
-        <p style="font-size:0.94rem; color:var(--brand-charcoal); line-height:1.85;">{{ product.description }}</p>
+        <span class="eyebrow">FRAGRANCE STORY <span class="zh-sub">· 调香灵感</span></span>
+        {% set story_parts = product.description.split(' · ') %}
+        <p style="font-size:0.94rem; color:var(--brand-charcoal); line-height:1.85;">
+          {{ story_parts[0] }}
+          {% if story_parts|length > 1 %}
+          <span class="zh-aux-block">{{ story_parts[1] }}</span>
+          {% endif %}
+        </p>
       </div>
 
       <div class="craft-note-box">
-        <span class="eyebrow" style="margin-bottom:6px;">ICONIC PRESENTATION · 瓶身与包装美学</span>
+        <span class="eyebrow" style="margin-bottom:6px;">ICONIC PRESENTATION <span class="zh-sub">· 包装与镌刻美学</span></span>
         <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.7;">
-          采用几何切割高透玻璃瓶身与双线黑框米色酒标设计，配以标志性暖奶油色硬质方盒与黑色罗纹丝带礼装陈列。
-          {% if product.allow_engraving %}该瓶型支持英伦手工字体瓶身镌刻艺术展示。{% endif %}
+          Presented in architectural cut glass with a monochrome framed label, housed in our signature rigid gift box hand-tied with black grosgrain ribbon.
+          {% if product.allow_engraving %}Eligible for bespoke British serif bottle engraving.{% endif %}
+          <span class="zh-aux-block">几何切割高透玻璃瓶身配标志性双线酒标与手工黑丝带礼盒陈列{% if product.allow_engraving %}，支持瓶身字母镌刻{% endif %}。</span>
         </p>
       </div>
 
       <div class="action-group pdp-actions">
         {% if category %}
-        <a href="{{ url_for('pages.category_detail', slug=category.slug) }}" class="btn btn-outline">返回{{ category.name_zh }}</a>
+        <a href="{{ url_for('pages.category_detail', slug=category.slug) }}" class="btn btn-outline">Back to {{ category.name_en }} <span class="zh-sub">返回</span></a>
         {% endif %}
-        <a href="{{ url_for('pages.index') }}#scent-pairing" class="btn btn-primary">前往叠穿混搭品鉴</a>
+        <a href="{{ url_for('pages.index') }}#scent-pairing" class="btn btn-primary">Try Scent Pairing™ <span class="zh-sub">叠穿混搭</span></a>
       </div>
     </div>
   </section>
 
-  <!-- 标志性三段式品香笔记 (Tasting Notes) -->
+  <!-- Three-Stage Tasting Notes -->
   <section class="tasting-notes">
     <div class="note-card">
-      <span class="eyebrow">TOP NOTE · 初调开篇</span>
+      <span class="eyebrow">TOP NOTE <span class="zh-sub">· 初调</span></span>
       <h4>{{ product.top_note }}</h4>
-      <p style="font-size:0.83rem; color:var(--text-muted);">第一缕跃入鼻息的鲜明清透印象</p>
+      <p style="font-size:0.83rem; color:var(--text-muted);">The vibrant opening impression upon the skin <span class="zh-aux-block">跃入鼻息的清透初印象</span></p>
     </div>
     <div class="note-card">
-      <span class="eyebrow">HEART NOTE · 中调灵魂</span>
+      <span class="eyebrow">HEART NOTE <span class="zh-sub">· 中调</span></span>
       <h4>{{ product.heart_note }}</h4>
-      <p style="font-size:0.83rem; color:var(--text-muted);">温润绽放并主导数小时的核心香气</p>
+      <p style="font-size:0.83rem; color:var(--text-muted);">The radiant core unfolding over several hours <span class="zh-aux-block">温润绽放的核心灵魂</span></p>
     </div>
     <div class="note-card">
-      <span class="eyebrow">BASE NOTE · 尾调余韵</span>
+      <span class="eyebrow">BASE NOTE <span class="zh-sub">· 尾调</span></span>
       <h4>{{ product.base_note }}</h4>
-      <p style="font-size:0.83rem; color:var(--text-muted);">沉淀于肌肤之上的绵长木质琥珀底蕴</p>
+      <p style="font-size:0.83rem; color:var(--text-muted);">The lingering woody and amber trail <span class="zh-aux-block">绵长深邃的余韵底色</span></p>
     </div>
   </section>
 
-  <!-- 官方混搭叠穿推荐 -->
+  <!-- Official Scent Pairing Recommendation -->
   {% if paired_product %}
   <section class="section pdp-pairing-section">
     <div class="framed-plaque">
       <div class="framed-plaque-inner pairing-banner-inner">
-        <img src="{{ paired_product.image_url }}" alt="{{ paired_product.name_zh }}" class="pairing-banner-img">
+        <img src="{{ paired_product.image_url }}" alt="{{ paired_product.name_en }}" class="pairing-banner-img">
         <div>
-          <span class="eyebrow">PERFECT SCENT PAIRING · 混搭叠穿灵感</span>
-          <h3 class="serif-title pairing-banner-title">推荐叠穿「{{ paired_product.name_zh }}」({{ paired_product.name_en }})</h3>
-          <p style="font-size:0.9rem; color:var(--text-muted);">{{ product.pairing_note }}</p>
+          <span class="eyebrow">PERFECT SCENT PAIRING™ <span class="zh-sub">· 混搭叠穿推荐</span></span>
+          <h3 class="serif-title pairing-banner-title">
+            Layer with {{ paired_product.name_en }}
+            <span class="zh-caption">推荐叠穿「{{ paired_product.name_zh }}」</span>
+          </h3>
+          {% set pair_parts = product.pairing_note.split(' · ') %}
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            {{ pair_parts[0] }}
+            {% if pair_parts|length > 1 %}
+            <span class="zh-aux-block">{{ pair_parts[1] }}</span>
+            {% endif %}
+          </p>
         </div>
-        <a href="{{ url_for('pages.product_detail', slug=paired_product.slug) }}" class="btn btn-outline">品鉴搭档香氛</a>
+        <a href="{{ url_for('pages.product_detail', slug=paired_product.slug) }}" class="btn btn-outline">Discover Pairing <span class="zh-sub">品鉴搭档</span></a>
       </div>
     </div>
   </section>
   {% endif %}
 
-  <!-- 同系列关联展示 -->
+  <!-- Related Creations -->
   {% if related_products %}
   <section class="section pdp-related-section">
     <div class="section-header">
-      <span class="eyebrow">RELATED ARCHIVE</span>
-      <h2 class="serif-title">同系列作品图鉴</h2>
+      <span class="eyebrow">COMPLETE THE RITUAL</span>
+      <h2 class="serif-title">You May Also Like <span class="zh-caption">同系列作品图鉴</span></h2>
     </div>
     <div class="product-grid product-grid--related">
       {% for rel in related_products %}
       <article class="product-card">
         <a href="{{ url_for('pages.product_detail', slug=rel.slug) }}" class="product-media">
-          <img src="{{ rel.image_url }}" alt="{{ rel.name_zh }}">
+          <img src="{{ rel.image_url }}" alt="{{ rel.name_en }}">
         </a>
         <div class="product-body">
-          <div class="product-scent">{{ rel.scent_family_zh }}</div>
+          <div class="product-scent">{{ rel.scent_family }} · {{ rel.collection }}</div>
           <a href="{{ url_for('pages.product_detail', slug=rel.slug) }}" class="product-name-en">{{ rel.name_en }}</a>
           <div class="product-name-zh">{{ rel.name_zh }}</div>
           <div class="product-meta">
-            <span>规格：{{ rel.variants | map(attribute='size') | join(' / ') }}</span>
+            <span>Editions: {{ rel.variants | map(attribute='size') | join(' / ') }}</span>
           </div>
-          <a href="{{ url_for('pages.product_detail', slug=rel.slug) }}" class="btn btn-outline btn-block">探索详情</a>
+          <a href="{{ url_for('pages.product_detail', slug=rel.slug) }}" class="btn btn-outline btn-block">Discover <span class="zh-sub">探索详情</span></a>
         </div>
       </article>
       {% endfor %}

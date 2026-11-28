@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}页面未找到 | {{ brand_name }}{% endblock %}
+{% block title %}Page Not Found · 页面未找到 | {{ brand_name }}{% endblock %}
 
 {% block content %}
 <section class="section not-found-section">
   <div class="container">
     <span class="eyebrow">404 · PAGE NOT FOUND</span>
-    <h1 class="serif-title not-found-title">您寻访的香氛篇章暂未开启</h1>
-    <p style="color:var(--text-muted); max-width:480px; margin:0 auto 28px;">该链接可能已变更，诚邀您返回首页或浏览全部经典古龙水与居室香氛系列。</p>
-    <a href="{{ url_for('pages.index') }}" class="btn btn-primary">返回精品店首页</a>
+    <h1 class="serif-title not-found-title">
+      The Fragrance Chapter Could Not Be Found
+      <span class="zh-caption">您寻访的香氛篇章暂未开启</span>
+    </h1>
+    <p style="color:var(--text-muted); max-width:520px; margin:0 auto 28px;">
+      The link you followed may have moved. Return to our boutique homepage or explore the complete fragrance archive.
+      <span class="zh-aux-block">该链接可能已变更，诚邀返回精品店首页探索更多经典香氛。</span>
+    </p>
+    <a href="{{ url_for('pages.index') }}" class="btn btn-primary">Return to Boutique <span class="zh-sub">返回首页</span></a>
   </div>
 </section>
 {% endblock %}
