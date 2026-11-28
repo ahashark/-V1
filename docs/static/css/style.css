@@ -1,20 +1,21 @@
 /* ==========================================================================
-   MAISON L'ATELIER LONDON — Luxury British Perfumery Showcase Design System
-   Inspired by jomalone.co.uk (#FCF9EE warm cream & #1C1C1C/#292929 charcoal)
+   MAISON L'ATELIER — Haute Parfumerie Monochrome Showcase Design System
+   Color Palette Inspired by chanel.cn Fragrance (#FFFFFF, #F6F6F6, #000000, #767676)
    Pure Static Showcase Edition (No Auth, Cart, or Checkout Styles)
    ========================================================================== */
 
 :root {
-  --cream-primary: #fcf9ee;
-  --cream-secondary: #f7f4e9;
-  --cream-tertiary: #efece0;
-  --cream-card: #fffdf6;
-  --brand-black: #1c1c1c;
-  --brand-charcoal: #292929;
-  --intense-bg: #171615;
-  --text-muted: #696969;
-  --border-subtle: #dcd6c4;
-  --border-dark: #292929;
+  --cream-primary: #ffffff;
+  --cream-secondary: #f6f6f6;
+  --cream-tertiary: #efefef;
+  --cream-card: #ffffff;
+  --brand-black: #000000;
+  --brand-charcoal: #1d1d1d;
+  --intense-bg: #000000;
+  --text-muted: #767676;
+  --border-subtle: #e5e5e5;
+  --border-dark: #000000;
+  --accent-gold: #c5a880;
   --font-serif: "Cormorant Garamond", "Baskerville", "Georgia", "Times New Roman", "Songti SC", "Noto Serif SC", serif;
   --font-sans: "Helvetica Neue", "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
   --container-max: 1320px;
@@ -215,8 +216,8 @@ button, input, select {
   position: sticky;
   top: 0;
   z-index: 900;
-  background-color: rgba(252, 249, 238, 0.97);
-  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -283,7 +284,7 @@ button, input, select {
 
 /* Primary Nav */
 .primary-nav {
-  border-top: 1px solid rgba(220, 214, 196, 0.55);
+  border-top: 1px solid #ececec;
   position: relative;
 }
 
@@ -339,7 +340,7 @@ button, input, select {
   visibility: hidden;
   transform: translateY(6px);
   transition: all 0.24s ease;
-  box-shadow: 0 18px 36px rgba(28, 28, 28, 0.08);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.08);
 }
 
 .nav-item.has-mega:hover .mega-menu {
@@ -542,7 +543,7 @@ button, input, select {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background-color: var(--cream-primary);
+  background-color: var(--cream-secondary);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -550,6 +551,7 @@ button, input, select {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: saturate(0.92) contrast(1.03);
   transition: transform 0.6s ease;
 }
 
@@ -679,7 +681,7 @@ button, input, select {
 }
 
 .intense-visual {
-  border: 1px solid rgba(252, 249, 238, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   padding: 10px;
 }
 
@@ -697,9 +699,9 @@ button, input, select {
 }
 
 .intense-mini-card {
-  border: 1px solid rgba(252, 249, 238, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 18px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .intense-mini-card h4 {
@@ -710,7 +712,7 @@ button, input, select {
 
 .intense-mini-card p {
   font-size: 0.82rem;
-  color: #c7c2b4;
+  color: #b8b8b8;
   margin-bottom: 12px;
 }
 
@@ -870,7 +872,7 @@ button, input, select {
 }
 
 .pdp-gallery {
-  background-color: var(--cream-card);
+  background-color: var(--cream-secondary);
   border: 1px solid var(--border-subtle);
   padding: 24px;
 }
@@ -879,6 +881,7 @@ button, input, select {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  filter: saturate(0.92) contrast(1.03);
 }
 
 .pdp-info h1 {
@@ -952,7 +955,7 @@ button, input, select {
 .backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(24, 23, 22, 0.48);
+  background-color: rgba(0, 0, 0, 0.52);
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -1005,7 +1008,7 @@ button, input, select {
   transform: translateX(0);
   visibility: visible;
   pointer-events: auto;
-  box-shadow: 18px 0 42px rgba(28, 28, 28, 0.18);
+  box-shadow: 18px 0 42px rgba(0, 0, 0, 0.2);
 }
 
 .mobile-drawer-header {
@@ -1064,7 +1067,7 @@ button, input, select {
 }
 
 .mobile-nav-item {
-  border-bottom: 1px solid rgba(220, 214, 196, 0.7);
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .mobile-nav-row {
@@ -1095,7 +1098,7 @@ button, input, select {
   height: 44px;
   background: none;
   border: none;
-  border-left: 1px solid rgba(220, 214, 196, 0.7);
+  border-left: 1px solid #e8e8e8;
   color: var(--brand-black);
   font-size: 1.2rem;
   cursor: pointer;
@@ -1109,7 +1112,7 @@ button, input, select {
   padding: 6px 12px 16px;
   background-color: var(--cream-secondary);
   margin: 0;
-  border-top: 1px solid rgba(220, 214, 196, 0.6);
+  border-top: 1px solid #e8e8e8;
 }
 
 .mobile-submenu.open {
@@ -1320,10 +1323,10 @@ button, input, select {
 }
 
 /* ==========================================================================
-   Footer (Dark Charcoal Packaging Contrast)
+   Footer (CHANEL Pure Jet-Black Couture Contrast)
    ========================================================================== */
 .site-footer {
-  background-color: var(--brand-charcoal);
+  background-color: var(--brand-black);
   color: var(--cream-primary);
   padding: 72px 0 36px;
   margin-top: 40px;
@@ -1334,7 +1337,7 @@ button, input, select {
   grid-template-columns: 1.35fr repeat(3, 1fr);
   gap: 44px;
   padding-bottom: 48px;
-  border-bottom: 1px solid rgba(252, 249, 238, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .footer-col h4 {
@@ -1353,7 +1356,7 @@ button, input, select {
 
 .footer-col a {
   font-size: 0.84rem;
-  color: #d7d2c4;
+  color: #b0b0b0;
 }
 
 .footer-col a:hover {
@@ -1368,7 +1371,7 @@ button, input, select {
   flex-wrap: wrap;
   gap: 16px;
   font-size: 0.78rem;
-  color: #b5b0a2;
+  color: #8c8c8c;
 }
 
 /* ==========================================================================
@@ -2145,7 +2148,7 @@ button, input, select {
   .footer-col:first-child {
     grid-column: 1 / -1;
     padding-bottom: 14px;
-    border-bottom: 1px solid rgba(252, 249, 238, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .footer-col h4 {
