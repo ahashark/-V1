@@ -1,7 +1,8 @@
 """
 全局配置文件 (Global Configuration)
-支持本地 Flask 预览与导出静态站点托管至 GitHub Pages（绑定自定义域名 sxy.ink）。
+支持本地 Flask 预览、Ubuntu 生产环境部署与导出静态站点托管至 GitHub Pages。
 """
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -10,11 +11,11 @@ STATIC_BUILD_DIR = BASE_DIR / "docs"
 
 
 class Config:
-    DATABASE = str(DATABASE_PATH)
+    DATABASE = os.environ.get("ATELIER_DB_PATH", str(DATABASE_PATH))
 
-    # GitHub Pages 自定义域名配置
-    CUSTOM_DOMAIN = "sxy.ink"
-    SITE_URL = "https://sxy.ink"
+    # 站点域名与基础地址（支持通过环境变量覆盖为内网或生产地址，如 http://192.168.118.128）
+    CUSTOM_DOMAIN = os.environ.get("CUSTOM_DOMAIN", "sxy.ink")
+    SITE_URL = os.environ.get("SITE_URL", "https://sxy.ink").rstrip("/")
 
     # 品牌基础设定（参考 jomalone.co.uk 英伦奢华香氛视觉定位）
     BRAND_NAME = "MAISON L'ATELIER"
